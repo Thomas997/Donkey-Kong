@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Donkey_Kong
 {
-    public partial class Form1 : Form
+    public partial class Platform : Form
     {
         //Variabelen
         bool goLeft, goRight, jumping, isGameOver;
@@ -27,7 +27,7 @@ namespace Donkey_Kong
         int barrel = 5;
 
 
-        public Form1()
+        public Platform()
         {
             InitializeComponent();
         }
@@ -90,6 +90,11 @@ namespace Donkey_Kong
                 }
             }
 
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
 
