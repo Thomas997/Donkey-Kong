@@ -101,5 +101,8 @@
   <ItemGroup>
     <None Include="Resources\oil.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MarioPointer.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
