@@ -22,6 +22,7 @@ namespace Donkey_Kong
             InitializeComponent();
 
             // Initialiseer het menu lijstje
+            //Hulp van ChatGPT
             menuItems = new List<Label>
             {
                 lblNewGame,
@@ -101,19 +102,38 @@ namespace Donkey_Kong
         private void StartGame()
         {
             menuItems[selectedMenuItemIndex].ForeColor = Color.Yellow;
-            // TODO: Implement game logic
+            //Verander startactie
+            //Credit: verschillende sites geholpen
+            Platform Platform = new Platform();
+            this.Hide();
+            Platform.ShowDialog();
+
+            Platform.Left = this.Left;
+            Platform.Top = this.Top;
+            Platform.Size = this.Size;
+
+            this.Close();
         }
 
         private void ShowLeaderboard()
         {
             menuItems[selectedMenuItemIndex].ForeColor = Color.Yellow;
-            // TODO: Implement leaderboard logic
+            // TODO: Implementeer leaderboard logica
         }
 
         private void ShowControls()
         {
             menuItems[selectedMenuItemIndex].ForeColor = Color.Yellow;
             // TODO: Implementeer control window
+            ShowControls ShowControls = new ShowControls();
+            this.Hide();
+            ShowControls.ShowDialog();
+
+            ShowControls.Left = this.Left;
+            ShowControls.Top = this.Top;
+            ShowControls.Size = this.Size;
+
+            this.Close();
         }
     }
 }
