@@ -93,6 +93,16 @@ namespace Donkey_Kong.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap MarioPointer {
+            get {
+                object obj = ResourceManager.GetObject("MarioPointer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap oil {
             get {
                 object obj = ResourceManager.GetObject("oil", resourceCulture);
