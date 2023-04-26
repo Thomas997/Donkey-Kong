@@ -13,7 +13,7 @@ namespace Donkey_Kong
 {
     public partial class Platform : Form
     {
-        //Variabelen
+        // Variabelen
         bool goLeft, goRight, jumping, isGameOver;
 
         int jumpSpeed;
@@ -24,7 +24,7 @@ namespace Donkey_Kong
         int horizontalSpeed = 5;
         int verticalSpeed = 3;
 
-        int barrel = 5;
+        int barrelSpeed = 5;
 
 
         public Platform()
@@ -32,12 +32,12 @@ namespace Donkey_Kong
             InitializeComponent();
         }
 
-        //Dit is de timer
+        // Dit is de timer
         private void MainGameTimerEvent(object sender, EventArgs e)
         {
             txtScore.Text = "Score: " + score;
 
-            //zwaartekracht
+            // zwaartekracht
             Player.Top += jumpSpeed;
 
             if(goLeft == true)
@@ -50,13 +50,13 @@ namespace Donkey_Kong
                 Player.Left += playerSpeed;
             }
 
-            //Dit zorgt er voor dat de game weet hoe hoog je springt en het checked of de force 0 is dus dat je mag springen
+            // Dit zorgt er voor dat de game weet hoe hoog je springt en het checked of de force 0 is dus dat je mag springen
             if(jumping == true && force < 0)
             {
                 jumping = false;
             }
 
-            //Als het springen begonnen is dan moeten de variabelen naar benden zodat het ook stopt anders mag het gewoon standaard zodat je kunt springen
+            // Als het springen begonnen is dan moeten de variabelen naar benden zodat het ook stopt anders mag het gewoon standaard zodat je kunt springen
             if(jumping == true)
             {
                 jumpSpeed = -8;
@@ -67,28 +67,45 @@ namespace Donkey_Kong
                 jumpSpeed = 10;
             }
 
-            //Hier gebruiken we de tag van de platformen zodat de game dit als een vast object ziet waar je kunt op staan
             foreach(Control x in this.Controls)
             {
                 if(x is PictureBox)
                 {
-
-                    if((string)x.Tag == "platform")
+                    // Hier gebruiken we de tag van de platformen zodat de game dit als een vast object ziet waar je kunt op staan
+                    if ((string)x.Tag == "platform")
                     {
 
                         if(Player.Bounds.IntersectsWith(x.Bounds))
                         {
                             force = 8;
-                            Player.Top = x.Top - Player.Height; 
+                            Player.Top = x.Top - Player.Height;
+
+
                         }
 
+                        // Dit is voor het gelitch bij de speler in te perken als dit er niet is dan kan de speler sprite door het platform glitchen
                         x.BringToFront();
                     }
 
 
+                    
+
+
+
+                    // Dit is de code voor de enemy het zegt dat als de speler collide met de enemy dan eindigt het spel (timer af)
+                    if ((string)x.Tag == "Enemy")
+                    {
+                        if(Player.Bounds.IntersectsWith(x.Bounds))
+                        {
+                            GameTimer.Stop();
+                            isGameOver = true;
+                            txtScore.Text = "Score: " + score + Environment.NewLine + "KO";
+                        }
+                    }
 
                 }
             }
+
 
 
         }
@@ -98,57 +115,57 @@ namespace Donkey_Kong
 
         }
 
-        //Dit is als er een toets is in gedrukt
+        // Dit is als er een toets is in gedrukt
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
-            //Dit is de code voor de linker toets ingedrukt
+            // Dit is de code voor de linker toets ingedrukt
             if(e.KeyCode == Keys.Left)
             {
                 goLeft = true;
             }
             
-            //Dit is de code voor de rechter toets ingedrukt
+            // Dit is de code voor de rechter toets ingedrukt
             if (e.KeyCode == Keys.Right)
             {
                 goRight = true;
             }
 
-            //Dit is de code voor de spaciebalk en als je springt
+            // Dit is de code voor de spaciebalk en als je springt
             if(e.KeyCode == Keys.Space && jumping == false)
             {
                 jumping = true;
             }
         }
 
-        //Dit is als er een toets is los gelaten
+        // Dit is als er een toets is los gelaten
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
-            //Dit is de code voor de linker toets als losgelaten
+            // Dit is de code voor de linker toets als losgelaten
             if (e.KeyCode == Keys.Left)
             {
                 goLeft = false;
             }
 
-            //Dit is de code voor de rechter toets als losgelaten
+            // Dit is de code voor de rechter toets als losgelaten
             if (e.KeyCode == Keys.Right)
             {
                 goRight = false;
             }
 
-            //Dit is de code voor eindigen van het springen als dat al gebeurt is 
+            // Dit is de code voor eindigen van het springen als dat al gebeurt is 
             if(jumping == true)
             {
                 jumping = false;
             }
 
-            //Als er op enter wordt ge drukt herstart de game
+            // Als er op enter wordt ge drukt herstart de game
             if(e.KeyCode == Keys.Enter && isGameOver == true)
             {
                 RestartGame();
             }
         }
 
-        //Deze functie herstart het spel en reset de variabelen
+        // Deze functie herstart het spel en reset de variabelen
         private void RestartGame()
         {
             jumping = false;
@@ -167,12 +184,12 @@ namespace Donkey_Kong
                 }
             }
 
-            //Reset the position of player, platform and enemies
+            // Reset the position of player, platform and enemies
 
             Player.Left = 99;
             Player.Top = 688;
 
-            Enemy.Left = 160;
+            Barrelone.Left = 160;
 
             GameTimer.Start();
         }

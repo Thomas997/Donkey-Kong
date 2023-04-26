@@ -16,7 +16,7 @@ namespace Donkey_Kong
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainMenu());
+            Application.Run(new Platform());
         }
     }
 }

@@ -38,7 +38,7 @@
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.Player = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.Enemy = new System.Windows.Forms.PictureBox();
+            this.Barrelone = new System.Windows.Forms.PictureBox();
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -48,7 +48,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Enemy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Barrelone)).BeginInit();
             this.SuspendLayout();
             // 
             // txtScore
@@ -139,15 +139,15 @@
             this.pictureBox7.TabIndex = 8;
             this.pictureBox7.TabStop = false;
             // 
-            // Enemy
+            // Barrelone
             // 
-            this.Enemy.BackColor = System.Drawing.Color.Brown;
-            this.Enemy.Location = new System.Drawing.Point(160, 106);
-            this.Enemy.Name = "Enemy";
-            this.Enemy.Size = new System.Drawing.Size(30, 40);
-            this.Enemy.TabIndex = 9;
-            this.Enemy.TabStop = false;
-            this.Enemy.Tag = "Enemy";
+            this.Barrelone.BackColor = System.Drawing.Color.Brown;
+            this.Barrelone.Location = new System.Drawing.Point(160, 106);
+            this.Barrelone.Name = "Barrelone";
+            this.Barrelone.Size = new System.Drawing.Size(30, 40);
+            this.Barrelone.TabIndex = 9;
+            this.Barrelone.TabStop = false;
+            this.Barrelone.Tag = "Enemy";
             // 
             // GameTimer
             // 
@@ -155,13 +155,13 @@
             this.GameTimer.Interval = 20;
             this.GameTimer.Tick += new System.EventHandler(this.MainGameTimerEvent);
             // 
-            // Form1
+            // Platform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Desktop;
             this.ClientSize = new System.Drawing.Size(654, 761);
-            this.Controls.Add(this.Enemy);
+            this.Controls.Add(this.Barrelone);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.Player);
             this.Controls.Add(this.pictureBox6);
@@ -172,7 +172,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtScore);
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Name = "Form1";
+            this.Name = "Platform";
             this.Text = "Donkey Kong";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
@@ -185,7 +185,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Enemy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Barrelone)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -201,7 +201,7 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox Player;
         private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.PictureBox Enemy;
+        private System.Windows.Forms.PictureBox Barrelone;
         private System.Windows.Forms.Timer GameTimer;
     }
 }
