@@ -113,7 +113,7 @@ namespace Donkey_Kong
         private void ShowControls()
         {
             menuItems[selectedMenuItemIndex].ForeColor = Color.Yellow;
-            // TODO: Implement controls logic
+            // TODO: Implementeer control window
         }
     }
 }
