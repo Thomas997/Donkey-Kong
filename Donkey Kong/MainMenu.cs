@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Media;
+using System.Runtime.Versioning;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,10 +20,15 @@ namespace Donkey_Kong
         private List<Label> menuItems;
         private int selectedMenuItemIndex;
         private PictureBox marioPictureBox;
-
+        string path = Application.StartupPath;
+        SoundPlayer MainTheme = new SoundPlayer(Application.StartupPath + @"\DKtheme.wav");
+        SoundPlayer button = new SoundPlayer(Application.StartupPath + @"\button.wav");
         public MainMenu()
         {
             InitializeComponent();
+
+            //Main menu muziek afspelen
+            MainTheme.Play();
 
             // Initialiseer het menu lijstje
             //Hulp van ChatGPT
@@ -43,10 +52,10 @@ namespace Donkey_Kong
             marioPictureBox.Location = new Point(itemLeft - marioPictureBox.Width - 5, itemTop - 15);
 
 
-            // Add the Mario picture box to the panel
+            // Mario pointer toevoegen
             panel1.Controls.Add(marioPictureBox);
 
-            // Hook up the key down event handler
+            // Key down -> eventhandler
             this.KeyDown += MainMenu_KeyDown;
         }
 
@@ -55,7 +64,7 @@ namespace Donkey_Kong
             switch (e.KeyCode)
             {
                 case Keys.Up:
-                    // Move the selection up
+                    // Naar boven
                     if (selectedMenuItemIndex > 0)
                     {
                         menuItems[selectedMenuItemIndex].ForeColor = Color.White;
@@ -64,7 +73,7 @@ namespace Donkey_Kong
                     }
                     break;
                 case Keys.Down:
-                    // Move the selection down
+                    // Naar onder
                     if (selectedMenuItemIndex < menuItems.Count - 1)
                     {
                         menuItems[selectedMenuItemIndex].ForeColor = Color.White;
@@ -74,26 +83,33 @@ namespace Donkey_Kong
                     break;
                 case Keys.Space:
                 case Keys.Enter:
-                    // Perform the action for the selected menu item
+                    // Enter geselecteerde index
                     switch (selectedMenuItemIndex)
                     {
                         case 0:
-                            // Start the game
+                            // Start spel
+                            MainTheme.Stop();
+                            button.Play();
+                            Task.Delay(5000);
                             StartGame();
                             break;
                         case 1:
-                            // Show the leaderboard
+                            // Leaderboard laten zien
+                            button.Play();
+                            Task.Delay(5000);
                             ShowLeaderboard();
                             break;
                         case 2:
-                            // Show the controls
+                            // Control animatie
+                            button.Play();
+                            Task.Delay(5000);
                             ShowControls();
                             break;
                     }
                     break;
             }
 
-            // Reposition the Mario picture box next to the selected menu item
+            // Mario repositioning
             int itemTop = menuItems[selectedMenuItemIndex].Top;
             int itemLeft = menuItems[selectedMenuItemIndex].Left;
             marioPictureBox.Location = new Point(itemLeft - marioPictureBox.Width - 5, itemTop - 15);
@@ -105,13 +121,9 @@ namespace Donkey_Kong
             //Verander startactie
             //Credit: verschillende sites geholpen
             Platform Platform = new Platform();
+            //Nieuwe tab openen en deze dicht doen
             this.Hide();
             Platform.ShowDialog();
-
-            Platform.Left = this.Left;
-            Platform.Top = this.Top;
-            Platform.Size = this.Size;
-
             this.Close();
         }
 
@@ -128,11 +140,6 @@ namespace Donkey_Kong
             ShowControls ShowControls = new ShowControls();
             this.Hide();
             ShowControls.ShowDialog();
-
-            ShowControls.Left = this.Left;
-            ShowControls.Top = this.Top;
-            ShowControls.Size = this.Size;
-
             this.Close();
         }
     }

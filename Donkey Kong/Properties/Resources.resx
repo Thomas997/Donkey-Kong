@@ -124,13 +124,16 @@
   <data name="oil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\oil.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="MarioPointer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MarioPointer.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="DK" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DK.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="kong2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\kong2.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MarioPointer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MarioPointer.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ShowControls" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ShowControls.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

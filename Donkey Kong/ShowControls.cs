@@ -16,8 +16,12 @@ namespace Donkey_Kong
         {
             InitializeComponent();
         }
+        private void VidShowControls()
+        {
 
-        private void ShowControls_Load(object sender, EventArgs e)
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
