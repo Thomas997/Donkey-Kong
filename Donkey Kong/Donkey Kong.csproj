@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AudioPlayer.cs" />
     <Compile Include="Platform.cs">
       <SubType>Form</SubType>
     </Compile>
