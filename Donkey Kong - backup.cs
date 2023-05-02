@@ -80,8 +80,8 @@ namespace Donkey_Kong
                 {
                     if (Player.Bounds.IntersectsWith(x.Bounds))
                     {
-                        force = 8;
-                        Player.Top = x.Top - Player.Height;
+                       force = 8;
+                       Player.Top = x.Top - Player.Height;
 
 
                     }
@@ -162,11 +162,11 @@ namespace Donkey_Kong
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
             // Dit is de code voor de linker toets ingedrukt
-            if (e.KeyCode == Keys.Left)
+            if(e.KeyCode == Keys.Left)
             {
                 goLeft = true;
             }
-
+            
             // Dit is de code voor de rechter toets ingedrukt
             if (e.KeyCode == Keys.Right)
             {
@@ -174,7 +174,7 @@ namespace Donkey_Kong
             }
 
             // Dit is de code voor de spaciebalk en als je springt
-            if (e.KeyCode == Keys.Space && jumping == false)
+            if(e.KeyCode == Keys.Space && jumping == false)
             {
                 jumping = true;
             }
@@ -197,13 +197,13 @@ namespace Donkey_Kong
             }
 
             // Dit is de code voor eindigen van het springen als dat al gebeurt is 
-            if (jumping == true)
+            if(jumping == true)
             {
                 jumping = false;
             }
 
             // Als er op enter wordt ge drukt herstart de game
-            if (e.KeyCode == Keys.Enter && isGameOver == true)
+            if(e.KeyCode == Keys.Enter && isGameOver == true)
             {
                 RestartGame();
             }
@@ -221,7 +221,7 @@ namespace Donkey_Kong
 
             txtScore.Text = "Score: " + score;
 
-            foreach (Control x in this.Controls)
+            foreach(Control x in this.Controls)
             {
                 if (x is PictureBox && x.Visible == false)
                 {
@@ -231,7 +231,7 @@ namespace Donkey_Kong
 
             // Reset the position of player, platform and enemies
 
-            Player.Left = 335;
+            Player.Left = 335; 
             Player.Top = 614;
 
             Barrelone.Left = 311;

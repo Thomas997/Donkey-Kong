@@ -40,6 +40,8 @@
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.Barrelone = new System.Windows.Forms.PictureBox();
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -49,12 +51,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.Player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Barrelone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.SuspendLayout();
             // 
             // txtScore
             // 
             this.txtScore.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtScore.Location = new System.Drawing.Point(380, 9);
+            this.txtScore.Location = new System.Drawing.Point(778, 9);
             this.txtScore.Name = "txtScore";
             this.txtScore.Size = new System.Drawing.Size(274, 84);
             this.txtScore.TabIndex = 0;
@@ -64,7 +68,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Pink;
-            this.pictureBox1.Location = new System.Drawing.Point(-2, 734);
+            this.pictureBox1.Location = new System.Drawing.Point(201, 654);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(656, 30);
             this.pictureBox1.TabIndex = 1;
@@ -74,7 +78,7 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Pink;
-            this.pictureBox2.Location = new System.Drawing.Point(-2, 616);
+            this.pictureBox2.Location = new System.Drawing.Point(201, 536);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(527, 30);
             this.pictureBox2.TabIndex = 2;
@@ -84,7 +88,7 @@
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Pink;
-            this.pictureBox3.Location = new System.Drawing.Point(127, 507);
+            this.pictureBox3.Location = new System.Drawing.Point(330, 423);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(527, 30);
             this.pictureBox3.TabIndex = 3;
@@ -94,7 +98,7 @@
             // pictureBox4
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.Pink;
-            this.pictureBox4.Location = new System.Drawing.Point(-2, 383);
+            this.pictureBox4.Location = new System.Drawing.Point(330, 200);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(527, 30);
             this.pictureBox4.TabIndex = 4;
@@ -104,7 +108,7 @@
             // pictureBox5
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.Pink;
-            this.pictureBox5.Location = new System.Drawing.Point(127, 257);
+            this.pictureBox5.Location = new System.Drawing.Point(201, 311);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(527, 30);
             this.pictureBox5.TabIndex = 5;
@@ -114,7 +118,7 @@
             // pictureBox6
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.Pink;
-            this.pictureBox6.Location = new System.Drawing.Point(-2, 143);
+            this.pictureBox6.Location = new System.Drawing.Point(201, 103);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(527, 30);
             this.pictureBox6.TabIndex = 6;
@@ -124,7 +128,7 @@
             // Player
             // 
             this.Player.BackColor = System.Drawing.Color.DarkBlue;
-            this.Player.Location = new System.Drawing.Point(99, 688);
+            this.Player.Location = new System.Drawing.Point(321, 617);
             this.Player.Name = "Player";
             this.Player.Size = new System.Drawing.Size(30, 40);
             this.Player.TabIndex = 7;
@@ -133,7 +137,7 @@
             // pictureBox7
             // 
             this.pictureBox7.BackColor = System.Drawing.Color.DarkGreen;
-            this.pictureBox7.Location = new System.Drawing.Point(-2, 73);
+            this.pictureBox7.Location = new System.Drawing.Point(211, 31);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(59, 73);
             this.pictureBox7.TabIndex = 8;
@@ -142,7 +146,7 @@
             // Barrelone
             // 
             this.Barrelone.BackColor = System.Drawing.Color.Brown;
-            this.Barrelone.Location = new System.Drawing.Point(160, 106);
+            this.Barrelone.Location = new System.Drawing.Point(285, 64);
             this.Barrelone.Name = "Barrelone";
             this.Barrelone.Size = new System.Drawing.Size(30, 40);
             this.Barrelone.TabIndex = 9;
@@ -155,12 +159,32 @@
             this.GameTimer.Interval = 20;
             this.GameTimer.Tick += new System.EventHandler(this.MainGameTimerEvent);
             // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Location = new System.Drawing.Point(855, 64);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(217, 620);
+            this.pictureBox8.TabIndex = 10;
+            this.pictureBox8.TabStop = false;
+            this.pictureBox8.Tag = "sidewall";
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Location = new System.Drawing.Point(-2, 64);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(207, 620);
+            this.pictureBox9.TabIndex = 11;
+            this.pictureBox9.TabStop = false;
+            this.pictureBox9.Tag = "sidewall";
+            // 
             // Platform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Desktop;
             this.ClientSize = new System.Drawing.Size(1064, 681);
+            this.Controls.Add(this.pictureBox9);
+            this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.Barrelone);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.Player);
@@ -189,6 +213,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Barrelone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -206,6 +232,8 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox Barrelone;
         private System.Windows.Forms.Timer GameTimer;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox pictureBox9;
     }
 }
 
