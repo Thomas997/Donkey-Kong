@@ -168,5 +168,9 @@
   <ItemGroup>
     <None Include="Resources\ShowControls.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button.wav" />
+    <None Include="Resources\DKtheme.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
