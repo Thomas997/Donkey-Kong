@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Linq;
 using System.Media;
 using System.Runtime.Versioning;
@@ -12,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
+using NAudio.Wave;
 
 namespace Donkey_Kong
 {
@@ -21,15 +23,48 @@ namespace Donkey_Kong
         private int selectedMenuItemIndex;
         private PictureBox marioPictureBox;
         string path = Application.StartupPath;
-        SoundPlayer MainTheme = new SoundPlayer(Application.StartupPath + @"\DKtheme.wav");
-        SoundPlayer button = new SoundPlayer(Application.StartupPath + @"\button.wav");
+
+        //SoundPlayer MainTheme = new SoundPlayer(Application.StartupPath + @"\DKtheme.wav");
+        //SoundPlayer MainTheme = new SoundPlayer(Donkey_Kong.Properties.Resources.DKtheme);
+        SoundPlayer button = new SoundPlayer(Donkey_Kong.Properties.Resources.button);
+        AudioPlayer MainTheme = new AudioPlayer(Donkey_Kong.Properties.Resources.DKtheme);
+        //audio controlls toevoegen
+        //chatGPT
+        public class AudioPlayer
+        {
+            private WaveOut outputDevice;
+            private WaveFileReader reader;
+
+            public AudioPlayer(Stream stream)
+            {
+                reader = new WaveFileReader(stream);
+                outputDevice = new WaveOut();
+                outputDevice.Init(new WaveChannel32(reader));
+            }
+
+            public void Play()
+            {
+                outputDevice.Play();
+            }
+
+            public void Stop()
+            {
+                outputDevice.Stop();
+                reader.Position = 0;
+            }
+
+            public void Dispose()
+            {
+                outputDevice.Dispose();
+                reader.Dispose();
+            }
+        }
         public MainMenu()
         {
             InitializeComponent();
-
-            //Main menu muziek afspelen
+            //main theme initialiseren van AudioPlayer
+            
             MainTheme.Play();
-
             // Initialiseer het menu lijstje
             //Hulp van ChatGPT
             menuItems = new List<Label>
