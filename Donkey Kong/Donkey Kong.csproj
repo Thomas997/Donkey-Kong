@@ -173,5 +173,8 @@
     <None Include="Resources\button.wav" />
     <None Include="Resources\DKtheme.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Game.WAV" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

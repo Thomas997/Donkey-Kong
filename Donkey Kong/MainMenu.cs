@@ -19,22 +19,25 @@ namespace Donkey_Kong
 {
     public partial class MainMenu : Form
     {
+        //variabele aanmaken
         private List<Label> menuItems;
         private int selectedMenuItemIndex;
         private PictureBox marioPictureBox;
         string path = Application.StartupPath;
-
+        bool isThemePlaying = false;
+        //AudioPlayers (van een class) aanmaken
+        //chatGPT
         AudioPlayer button = new AudioPlayer(Donkey_Kong.Properties.Resources.button);
         AudioPlayer MainTheme = new AudioPlayer(Donkey_Kong.Properties.Resources.DKtheme);
-        //audio controlls toevoegen
-        //chatGPT
-        
-        public MainMenu()
+        public MainMenu(bool isThemePlaying)
         {
             InitializeComponent();
-            //main theme initialiseren van AudioPlayer
-            
-            MainTheme.Play();
+            if (isThemePlaying == false)
+            {
+                MainTheme.Play();
+                isThemePlaying = true;
+            }
+            //main theme initialiseren van AudioPlayer en zorgen dat alle instanties van MainTheme eerst weg zijn
             // Initialiseer het menu lijstje
             //Hulp van ChatGPT
             menuItems = new List<Label>
@@ -64,6 +67,9 @@ namespace Donkey_Kong
             this.KeyDown += MainMenu_KeyDown;
         }
 
+
+        //Main menu controls
+        // ChatGPT
         private void MainMenu_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)

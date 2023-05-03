@@ -27,6 +27,8 @@ namespace Donkey_Kong
         public Platform()
         {
             InitializeComponent();
+            AudioPlayer GameMusic = new AudioPlayer(Donkey_Kong.Properties.Resources.Game);
+            GameMusic.Play();
         }
 
         private void Form1_Load(object sender, EventArgs e)
