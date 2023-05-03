@@ -24,41 +24,11 @@ namespace Donkey_Kong
         private PictureBox marioPictureBox;
         string path = Application.StartupPath;
 
-        //SoundPlayer MainTheme = new SoundPlayer(Application.StartupPath + @"\DKtheme.wav");
-        //SoundPlayer MainTheme = new SoundPlayer(Donkey_Kong.Properties.Resources.DKtheme);
-        SoundPlayer button = new SoundPlayer(Donkey_Kong.Properties.Resources.button);
+        AudioPlayer button = new AudioPlayer(Donkey_Kong.Properties.Resources.button);
         AudioPlayer MainTheme = new AudioPlayer(Donkey_Kong.Properties.Resources.DKtheme);
         //audio controlls toevoegen
         //chatGPT
-        public class AudioPlayer
-        {
-            private WaveOut outputDevice;
-            private WaveFileReader reader;
-
-            public AudioPlayer(Stream stream)
-            {
-                reader = new WaveFileReader(stream);
-                outputDevice = new WaveOut();
-                outputDevice.Init(new WaveChannel32(reader));
-            }
-
-            public void Play()
-            {
-                outputDevice.Play();
-            }
-
-            public void Stop()
-            {
-                outputDevice.Stop();
-                reader.Position = 0;
-            }
-
-            public void Dispose()
-            {
-                outputDevice.Dispose();
-                reader.Dispose();
-            }
-        }
+        
         public MainMenu()
         {
             InitializeComponent();
