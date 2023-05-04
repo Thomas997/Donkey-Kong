@@ -67,12 +67,12 @@ namespace Donkey_Kong
             // Als het springen begonnen is dan moeten de variabelen naar benden zodat het ook stopt anders mag het gewoon standaard zodat je kunt springen
             if (jumping == true)
             {
-                jumpSpeed = -10; //old variable -8
+                jumpSpeed = -7; //old variable -8
                 force -= 1;
             }
             else
             {
-                jumpSpeed = 12; //old variable 10
+                jumpSpeed = 9; //old variable 10
             }
 
 
@@ -84,7 +84,7 @@ namespace Donkey_Kong
                 if ((string)x.Tag == "platform" && x is PictureBox)
                 {
 
-                    checkCollisionBottomPlatform((PictureBox)x);
+                    checkCollisionPlatform((PictureBox)x);
 
                     // Dit is voor het gelitch bij de speler in te perken als dit er niet is dan kan de speler sprite door het platform glitchen
                     x.BringToFront();
@@ -166,7 +166,7 @@ namespace Donkey_Kong
 
         // collision met de onderkant van het platform
         // Credit:
-        private void checkCollisionBottomPlatform(PictureBox platform)
+        private void checkCollisionPlatform(PictureBox platform)
         {
             if (Player.Bounds.IntersectsWith(platform.Bounds) && Player.Bottom <= platform.Bottom && Player.Bottom >= platform.Top)
             {
