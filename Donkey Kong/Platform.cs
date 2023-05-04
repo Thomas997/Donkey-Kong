@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NAudio.Gui;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,13 +35,13 @@ namespace Donkey_Kong
 
         }
 
-        // Dit is de timer
+        // Dit is de timer hier gebeurd alles met beweging
         // Credit: https://youtu.be/rQBHwdEEL9I
         private void MainGameTimerEvent(object sender, EventArgs e)
         {
             txtScore.Text = "Score: " + score;
 
-            // zwaartekracht
+            // is voor naar links en rechts te kunnen gaan
             Player.Top += jumpSpeed;
 
             if (goLeft == true)
@@ -53,21 +54,23 @@ namespace Donkey_Kong
                 Player.Left += playerSpeed;
             }
 
+
             // Dit zorgt er voor dat de game weet hoe hoog je springt en het checked of de force 0 is dus dat je mag springen
             if (jumping == true && force < 0)
             {
                 jumping = false;
             }
 
+
             // Als het springen begonnen is dan moeten de variabelen naar benden zodat het ook stopt anders mag het gewoon standaard zodat je kunt springen
             if (jumping == true)
             {
-                jumpSpeed = -8;
+                jumpSpeed = -10; //old variable -8
                 force -= 1;
             }
             else
             {
-                jumpSpeed = 10;
+                jumpSpeed = 12; //old variable 10
             }
 
 
@@ -78,18 +81,17 @@ namespace Donkey_Kong
                 // Credit: https://youtu.be/rQBHwdEEL9I
                 if ((string)x.Tag == "platform" && x is PictureBox)
                 {
-                    if (Player.Bounds.IntersectsWith(x.Bounds))
-                    {
-                        force = 8;
-                        Player.Top = x.Top - Player.Height;
 
-
-                    }
-
-
+                    checkCollisionBottomPlatform((PictureBox)x);
 
                     // Dit is voor het gelitch bij de speler in te perken als dit er niet is dan kan de speler sprite door het platform glitchen
                     x.BringToFront();
+                }
+
+                if ((string)x.Tag == "ladder" && x is PictureBox)
+                {
+                    checkCollisionladder((PictureBox)x);
+
                 }
 
                 // Here we use the tag of the platforms to identify them as solid objects
@@ -117,6 +119,7 @@ namespace Donkey_Kong
             }
         }
 
+
         // Check for collision with the wall
         // Credit: gemaakt door chatgtp maar zelf moet aanpassen en uitzoeken hoe het werkt
         private void checkSidewallCollision(PictureBox sidewall)
@@ -136,6 +139,7 @@ namespace Donkey_Kong
                 }
             }
         }
+
 
         // Check for collision with the top or bottom of the wall
         // Credit: gemaakt door chatgtp maar zelf moet aanpassen en uitzoeken hoe het werkt
@@ -157,6 +161,30 @@ namespace Donkey_Kong
             }
         }
 
+
+        // collision met de onderkant van het platform
+        // Credit:
+        private void checkCollisionBottomPlatform(PictureBox platform)
+        {
+            if (Player.Bounds.IntersectsWith(platform.Bounds) && Player.Bottom <= platform.Bottom && Player.Bottom >= platform.Top)
+            {
+                force = 8;
+                Player.Top = platform.Top - Player.Height;
+            }
+
+        }
+
+
+        private void checkCollisionladder(PictureBox ladder)
+        {
+            if (Player.Bounds.IntersectsWith(ladder.Bounds))
+            {
+                force = 8;
+                jumping = true;
+            }
+        }
+
+
         // Dit is als er een toets is in gedrukt
         // Credit: https://youtu.be/rQBHwdEEL9I
         private void KeyIsDown(object sender, KeyEventArgs e)
@@ -173,12 +201,15 @@ namespace Donkey_Kong
                 goRight = true;
             }
 
+
             // Dit is de code voor de spaciebalk en als je springt
             if (e.KeyCode == Keys.Space && jumping == false)
             {
                 jumping = true;
             }
+
         }
+
 
         // Dit is als er een toets is los gelaten
         // Credit: https://youtu.be/rQBHwdEEL9I
@@ -209,6 +240,7 @@ namespace Donkey_Kong
             }
         }
 
+
         // Deze functie herstart het spel en reset de variabelen
         // Credit: https://youtu.be/rQBHwdEEL9I
         private void RestartGame()
@@ -238,5 +270,6 @@ namespace Donkey_Kong
 
             GameTimer.Start();
         }
+        
     }
 }
