@@ -48,7 +48,7 @@
             this.panel1.Controls.Add(this.lblControls);
             this.panel1.Controls.Add(this.lblLeaderboard);
             this.panel1.Controls.Add(this.lblNewGame);
-            this.panel1.Location = new System.Drawing.Point(191, 462);
+            this.panel1.Location = new System.Drawing.Point(191, 554);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(680, 216);
             this.panel1.TabIndex = 2;
@@ -60,7 +60,7 @@
             this.lblControls.CausesValidation = false;
             this.lblControls.Font = new System.Drawing.Font("Kongtext", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblControls.ForeColor = System.Drawing.Color.White;
-            this.lblControls.Location = new System.Drawing.Point(128, 139);
+            this.lblControls.Location = new System.Drawing.Point(128, 160);
             this.lblControls.Name = "lblControls";
             this.lblControls.Size = new System.Drawing.Size(270, 32);
             this.lblControls.TabIndex = 2;
@@ -73,7 +73,7 @@
             this.lblLeaderboard.CausesValidation = false;
             this.lblLeaderboard.Font = new System.Drawing.Font("Kongtext", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeaderboard.ForeColor = System.Drawing.Color.White;
-            this.lblLeaderboard.Location = new System.Drawing.Point(128, 82);
+            this.lblLeaderboard.Location = new System.Drawing.Point(128, 90);
             this.lblLeaderboard.Name = "lblLeaderboard";
             this.lblLeaderboard.Size = new System.Drawing.Size(366, 32);
             this.lblLeaderboard.TabIndex = 1;
@@ -86,7 +86,7 @@
             this.lblNewGame.CausesValidation = false;
             this.lblNewGame.Font = new System.Drawing.Font("Kongtext", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNewGame.ForeColor = System.Drawing.Color.White;
-            this.lblNewGame.Location = new System.Drawing.Point(128, 21);
+            this.lblNewGame.Location = new System.Drawing.Point(128, 18);
             this.lblNewGame.Name = "lblNewGame";
             this.lblNewGame.Size = new System.Drawing.Size(270, 32);
             this.lblNewGame.TabIndex = 0;
@@ -95,7 +95,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::Donkey_Kong.Properties.Resources.oil;
-            this.pictureBox4.Location = new System.Drawing.Point(907, 168);
+            this.pictureBox4.Location = new System.Drawing.Point(907, 202);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(115, 288);
             this.pictureBox4.TabIndex = 4;
@@ -104,7 +104,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::Donkey_Kong.Properties.Resources.oil;
-            this.pictureBox3.Location = new System.Drawing.Point(42, 168);
+            this.pictureBox3.Location = new System.Drawing.Point(42, 202);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(115, 288);
             this.pictureBox3.TabIndex = 3;
@@ -113,7 +113,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Donkey_Kong.Properties.Resources.DK;
-            this.pictureBox2.Location = new System.Drawing.Point(191, 12);
+            this.pictureBox2.Location = new System.Drawing.Point(191, 20);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(680, 150);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -123,7 +123,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Donkey_Kong.Properties.Resources.kong;
-            this.pictureBox1.Location = new System.Drawing.Point(325, 168);
+            this.pictureBox1.Location = new System.Drawing.Point(325, 202);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(416, 288);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -135,7 +135,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1064, 681);
+            this.ClientSize = new System.Drawing.Size(1064, 941);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.panel1);
