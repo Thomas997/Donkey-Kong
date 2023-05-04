@@ -135,7 +135,7 @@ namespace Donkey_Kong
             menuItems[selectedMenuItemIndex].ForeColor = Color.Yellow;
             //Verander startactie
             //Credit: verschillende sites geholpen
-            Platform Platform = new Platform();
+            Platform Platform = new Platform(MainTheme);
             //Nieuwe tab openen en deze dicht doen
             this.Hide();
             Platform.ShowDialog();
@@ -151,11 +151,14 @@ namespace Donkey_Kong
         private void ShowControls()
         {
             menuItems[selectedMenuItemIndex].ForeColor = Color.Yellow;
-            // TODO: Implementeer control window
+            // Formulier verbergen en weer laten zien wanneer DialogResult = Ok bij Showcontrols
+            //Credit: meester Feijen
             ShowControls ShowControls = new ShowControls();
             this.Hide();
-            ShowControls.ShowDialog();
-            this.Close();
+            if (ShowControls.ShowDialog() == DialogResult.OK)
+            {
+                this.Show();
+            }
         }
     }
 }

@@ -24,11 +24,12 @@ namespace Donkey_Kong
         int barrelSpeed = 5;
 
 
-        public Platform()
+        public Platform(AudioPlayer MainTheme)
         {
             InitializeComponent();
             AudioPlayer GameMusic = new AudioPlayer(Donkey_Kong.Properties.Resources.Game);
             GameMusic.Play();
+            MainTheme.Dispose();
         }
 
         private void Form1_Load(object sender, EventArgs e)
