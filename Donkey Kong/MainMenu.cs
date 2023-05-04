@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 using NAudio.Wave;
+using System.Linq.Expressions;
 
 namespace Donkey_Kong
 {
@@ -29,6 +30,7 @@ namespace Donkey_Kong
         //chatGPT
         AudioPlayer button = new AudioPlayer(Donkey_Kong.Properties.Resources.button);
         AudioPlayer MainTheme = new AudioPlayer(Donkey_Kong.Properties.Resources.DKtheme);
+        AudioPlayer select = new AudioPlayer(Donkey_Kong.Properties.Resources.blipSelect);
         public MainMenu(bool isThemePlaying)
         {
             InitializeComponent();
@@ -72,10 +74,12 @@ namespace Donkey_Kong
         // ChatGPT
         private void MainMenu_KeyDown(object sender, KeyEventArgs e)
         {
+            select.Play();
             switch (e.KeyCode)
             {
                 case Keys.Up:
                     // Naar boven
+                    
                     if (selectedMenuItemIndex > 0)
                     {
                         menuItems[selectedMenuItemIndex].ForeColor = Color.White;

@@ -182,7 +182,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Desktop;
-            this.ClientSize = new System.Drawing.Size(1064, 681);
+            this.ClientSize = new System.Drawing.Size(1064, 941);
             this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.Barrelone);

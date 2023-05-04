@@ -63,6 +63,15 @@ namespace Donkey_Kong.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream blipSelect {
+            get {
+                return ResourceManager.GetStream("blipSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream button {
             get {
                 return ResourceManager.GetStream("button", resourceCulture);
@@ -134,6 +143,15 @@ namespace Donkey_Kong.Properties {
             get {
                 object obj = ResourceManager.GetObject("oil", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream scream {
+            get {
+                return ResourceManager.GetStream("scream", resourceCulture);
             }
         }
         

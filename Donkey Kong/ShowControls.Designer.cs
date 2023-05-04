@@ -38,7 +38,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Donkey_Kong.Properties.Resources.ShowControls;
-            this.pictureBox1.Location = new System.Drawing.Point(58, 122);
+            this.pictureBox1.Location = new System.Drawing.Point(58, 203);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1064, 441);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -48,9 +48,9 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.lblReturn);
-            this.panel1.Location = new System.Drawing.Point(224, 574);
+            this.panel1.Location = new System.Drawing.Point(191, 677);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(680, 95);
+            this.panel1.Size = new System.Drawing.Size(680, 55);
             this.panel1.TabIndex = 3;
             // 
             // lblReturn
@@ -60,7 +60,7 @@
             this.lblReturn.CausesValidation = false;
             this.lblReturn.Font = new System.Drawing.Font("Kongtext", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReturn.ForeColor = System.Drawing.Color.White;
-            this.lblReturn.Location = new System.Drawing.Point(191, 22);
+            this.lblReturn.Location = new System.Drawing.Point(218, 12);
             this.lblReturn.Name = "lblReturn";
             this.lblReturn.Size = new System.Drawing.Size(238, 32);
             this.lblReturn.TabIndex = 0;
@@ -71,7 +71,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1064, 681);
+            this.ClientSize = new System.Drawing.Size(1064, 941);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
             this.ForeColor = System.Drawing.SystemColors.Control;

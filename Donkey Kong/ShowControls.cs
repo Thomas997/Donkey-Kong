@@ -87,7 +87,6 @@ namespace Donkey_Kong
         private void Return()
         {
             menuItems[selectedMenuItemIndex].ForeColor = Color.Yellow;
-            // TODO: Implementeer control window
             MainMenu MainMenu = new MainMenu(true);
             this.Hide();
             MainMenu.ShowDialog();
