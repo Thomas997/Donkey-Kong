@@ -51,7 +51,7 @@ namespace Donkey_Kong
             int index = random.Next(0, 3);
 
             // Define the available interval options
-            int[] intervals = { 3000, 5000, 10000 };
+            int[] intervals = { 3000, 5000, 7000 };
 
             // Retrieve the randomly selected interval
             int interval = intervals[index];
@@ -191,16 +191,23 @@ namespace Donkey_Kong
 
                 // Dit is de code voor de enemy het zegt dat als de speler collide met de enemy dan eindigt het spel (timer af)
                 // Credit: https://youtu.be/rQBHwdEEL9I
-                // TODO zorgen dat gameover als spler barrel raakt
-                if ((string)x.Tag == "Enemy")
+
+
+
+
+                foreach (Control c in this.Controls)
                 {
-                    if (Player.Bounds.IntersectsWith(x.Bounds))
+                    // hier stoppen we da game 
+                    if (c is PictureBox && c.Name.StartsWith("Barrel"))
                     {
-                        GameTimer.Stop();
-                        isGameOver = true;
-                        txtScore.Text = "" + score;
+                        if (Player.Bounds.IntersectsWith(x.Bounds))
+                        {
+                            //GameTimer.Stop();
+                            //BarrelTimer.Stop();
+                            isGameOver = true;
+                            txtScore.Text = "" + score;
+                        }
                     }
-                    //Barrel.Left += barrelSpeed;
                 }
             }
         }
@@ -382,8 +389,7 @@ namespace Donkey_Kong
             Player.Left = 256;
             Player.Top = 875;
 
-            //Barrel.Left = 330;
-
+            BarrelTimer.Start();
             GameTimer.Start();
         }
 
