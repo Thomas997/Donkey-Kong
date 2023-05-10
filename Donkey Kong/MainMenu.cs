@@ -61,7 +61,7 @@ namespace Donkey_Kong
             int itemLeft = menuItems[selectedMenuItemIndex].Left;
             marioPictureBox.Location = new Point(itemLeft - marioPictureBox.Width - 5, itemTop - 15);
 
-
+            
             // Mario pointer toevoegen
             panel1.Controls.Add(marioPictureBox);
 
