@@ -25,12 +25,13 @@ namespace Donkey_Kong
         int barrelSpeed = 5;
 
 
-        public Platform(AudioPlayer MainTheme)
+        public Platform(AudioPlayer MainTheme, string name)
         {
             InitializeComponent();
             AudioPlayer GameMusic = new AudioPlayer(Donkey_Kong.Properties.Resources.Game);
             GameMusic.Play();
             MainTheme.Dispose();
+            SaveHighScore("Conor", 10);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -273,6 +274,19 @@ namespace Donkey_Kong
 
             GameTimer.Start();
         }
-        
+
+        //Sla de high score op
+        //Full credit: ChatGPT
+        public static void SaveHighScore(string name, int score)
+        {
+
+            // Haal de spelernaam op
+            string playerName = name;
+            int playerScore = score;
+
+            // Sla de high score op in de database
+            string formattedDate = DateTime.Now.ToString("dd-MM-yyyy");
+            DatabaseHelper.AddOrUpdateHighScore(playerName, playerScore, formattedDate);
+        }
     }
 }

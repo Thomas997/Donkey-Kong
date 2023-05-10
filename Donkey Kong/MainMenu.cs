@@ -106,7 +106,24 @@ namespace Donkey_Kong
                             MainTheme.Stop();
                             button.Play();
                             Task.Delay(5000);
-                            StartGame();
+                            // Vraag de gebruiker voor een username
+                            string name = "";
+                            using (var form = new Form())
+                            {
+                                form.Text = "Enter your name";
+                                var textBox = new TextBox() { Left = 50, Top = 50 };
+                                var button = new Button() { Text = "Ok", Left = 100, Width = 100, Top = 75, DialogResult = DialogResult.OK };
+                                button.Click += (sender2, e2) => { form.Close(); };
+                                form.Controls.Add(textBox);
+                                form.Controls.Add(button);
+                                form.AcceptButton = button;
+
+                                if (form.ShowDialog() == DialogResult.OK)
+                                {
+                                    name = textBox.Text;
+                                }
+                            }
+                            StartGame(name);
                             break;
                         case 1:
                             // Leaderboard laten zien
@@ -130,12 +147,13 @@ namespace Donkey_Kong
             marioPictureBox.Location = new Point(itemLeft - marioPictureBox.Width - 5, itemTop - 15);
         }
 
-        private void StartGame()
+        private void StartGame(string name)
         {
             menuItems[selectedMenuItemIndex].ForeColor = Color.Yellow;
             //Verander startactie
             //Credit: verschillende sites geholpen
-            Platform Platform = new Platform(MainTheme);
+            Platform Platform = new Platform(MainTheme, name); 
+
             //Nieuwe tab openen en deze dicht doen
             this.Hide();
             Platform.ShowDialog();

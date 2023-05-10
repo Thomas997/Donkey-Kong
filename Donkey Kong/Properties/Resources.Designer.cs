@@ -79,6 +79,16 @@ namespace Donkey_Kong.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Database {
+            get {
+                object obj = ResourceManager.GetObject("Database", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap DK {
@@ -123,6 +133,16 @@ namespace Donkey_Kong.Properties {
             get {
                 object obj = ResourceManager.GetObject("kong2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] KongtextRegular {
+            get {
+                object obj = ResourceManager.GetObject("KongtextRegular", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
