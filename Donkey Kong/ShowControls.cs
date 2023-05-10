@@ -86,11 +86,13 @@ namespace Donkey_Kong
         }
         private void Return()
         {
-            menuItems[selectedMenuItemIndex].ForeColor = Color.Yellow;
-            MainMenu MainMenu = new MainMenu(true);
-            this.Hide();
-            MainMenu.ShowDialog();
+            this.DialogResult = DialogResult.OK;
             this.Close();
+            //menuItems[selectedMenuItemIndex].ForeColor = Color.Yellow;
+            //MainMenu MainMenu = new MainMenu(true);
+            //this.Hide();
+            //MainMenu.ShowDialog();
+            //this.Close();
         }
     }
 }
