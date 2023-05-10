@@ -31,7 +31,6 @@ namespace Donkey_Kong
             AudioPlayer GameMusic = new AudioPlayer(Donkey_Kong.Properties.Resources.Game);
             GameMusic.Play();
             MainTheme.Dispose();
-            SaveHighScore("Conor", 10);
         }
 
         private void Form1_Load(object sender, EventArgs e)
