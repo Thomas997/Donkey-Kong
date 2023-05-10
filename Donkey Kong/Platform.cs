@@ -19,7 +19,15 @@ namespace Donkey_Kong
         bool goLeft, goRight, jumping, isGameOver, usingLadder;
         int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 5;
 
-        public Platform(AudioPlayer MainTheme)
+        int jumpSpeed;
+        int force;
+        int score = 0;
+        int playerSpeed = 7;
+
+        int barrelSpeed = 5;
+
+
+        public Platform(AudioPlayer MainTheme, string name)
         {
             InitializeComponent();
             AudioPlayer GameMusic = new AudioPlayer(Donkey_Kong.Properties.Resources.Game);
@@ -383,6 +391,20 @@ namespace Donkey_Kong
 
             BarrelTimer.Start();
             GameTimer.Start();
+        }
+
+        //Sla de high score op
+        //Full credit: ChatGPT
+        public static void SaveHighScore(string name, int score)
+        {
+
+            // Haal de spelernaam op
+            string playerName = name;
+            int playerScore = score;
+
+            // Sla de high score op in de database
+            string formattedDate = DateTime.Now.ToString("dd-MM-yyyy");
+            DatabaseHelper.AddOrUpdateHighScore(playerName, playerScore, formattedDate);
         }
         #endregion
     }
