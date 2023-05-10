@@ -16,10 +16,10 @@ namespace Donkey_Kong
     public partial class Platform : Form
     {
         // Variabelen
-        bool goLeft, goRight, jumping, isGameOver, usingLadder, enemyGoLeft, enemyGoRight;
-        int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7;
+        bool goLeft, goRight, jumping, isGameOver, usingLadder;
+        int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 5;
 
-        int barrelSpeed = 5;
+        
         public Platform()
         {
             InitializeComponent();
@@ -32,33 +32,77 @@ namespace Donkey_Kong
 
         }
 
+        #region Barrel timer
+        // dit is de timer van de barrels te laten spawnen
+        private void BarrelTimer_Tick(object sender, EventArgs e)
+        {
+            // Create a random number generator
+            Random random = new Random();
+
+            // Generate a random index to select the interval from the available options
+            int index = random.Next(0, 3);
+
+            // Define the available interval options
+            int[] intervals = { 3000, 5000, 10000 };
+
+            // Retrieve the randomly selected interval
+            int interval = intervals[index];
+
+            // Update the timer interval
+            BarrelTimer.Interval = interval;
+
+
+            // hier maken we de barrel aan in de code zelf niet meer een picture box in de form geplaatst en we her gebruiken al de variabelen van de oude barrel
+            PictureBox barrel = new PictureBox();
+
+            barrel.BackColor = System.Drawing.Color.Brown;
+            barrel.Location = new System.Drawing.Point(330, 206);
+            barrel.Name = "Barrel";
+            barrel.Size = new System.Drawing.Size(30, 31);
+            barrel.TabIndex = 9;
+            barrel.TabStop = false;
+            barrel.Tag = "right";
+            this.Controls.Add(barrel);
+        }
+        #endregion
+
         #region Main game timer
         // Dit is de timer hier gebeurd alles met beweging
         // Credit: https://youtu.be/rQBHwdEEL9I
         private void MainGameTimerEvent(object sender, EventArgs e)
         {
-            score += 1;
-
             txtScore.Text = "" + score;
             txtHighscore.Text = "" + score; //moet nog naar highsscore veranderd worden
 
-
-            if (enemyMovement() == true)
+            // deze foreach zorgt er voor dat we meerdere barrels gaan kunnen gebruiken
+            foreach(Control c in this.Controls)
             {
-                Barrel.Left += barrelSpeed;
-                Barrel.Top += 10;
+                // hier zetten we de picturebox gelijk aan de barrel
+                if(c is PictureBox && c.Name.StartsWith("Barrel"))
+                {
+                    // de tag is al right dus gaat de barrel naar rechts gaan bewegen tot het de rightsidewall raakt en dan gaat de tag naar links
+                    if((string)c.Tag == "right")
+                    {
+                        c.Left += barrelSpeed;
+                        c.Top += 10;
+                        if(c.Left > rightSidewall.Left - 30)
+                        {
+                            c.Tag = "left";
+                        }
+                    }
+                    // als barrel links is geworden dan moet die ook naar links tot die de leftsidewall aan raakt en dan verandert de tag weer naar right
+                    if ((string)c.Tag == "left")
+                    {
+                        c.Left -= barrelSpeed;
+                        c.Top += 10;
+                        if (c.Left < leftSidewall.Left + leftSidewall.Width)
+                        {
+                            c.Tag = "right";
+                        }
+                    }
+
+                }
             }
-            else if (enemyMovement() == false)
-            {
-                Barrel.Left -= barrelSpeed;
-            }
-
-
-
-
-
-
-
 
             // is voor naar links te gaan
             if (goLeft == true)
@@ -107,7 +151,6 @@ namespace Donkey_Kong
                 }
             }
 
-
             foreach (Control x in this.Controls)
             {
                 // Here we use the tag of the platforms to identify them as solid objects
@@ -140,6 +183,7 @@ namespace Donkey_Kong
 
                 // Dit is de code voor de enemy het zegt dat als de speler collide met de enemy dan eindigt het spel (timer af)
                 // Credit: https://youtu.be/rQBHwdEEL9I
+                // TODO zorgen dat gameover als spler barrel raakt
                 if ((string)x.Tag == "Enemy")
                 {
                     if (Player.Bounds.IntersectsWith(x.Bounds))
@@ -172,23 +216,6 @@ namespace Donkey_Kong
             return false;
         }
 
-        private bool enemyMovement()
-        {
-            foreach (Control x in this.Controls)
-            {
-                if (x is PictureBox && (String)x.Tag == "enemyMovementCheckpoint")
-                {
-                    if (Barrel.Bounds.IntersectsWith(x.Bounds))
-                    {
-                        return true;
-                    }
-                    x.SendToBack();
-                }
-            }
-            return false;
-        }
-
-
         // Check for collision with the wall
         // Credit: gemaakt door chatgtp maar zelf moet aanpassen en uitzoeken hoe het werkt
         private void checkSidewallCollision(PictureBox sidewall)
@@ -208,7 +235,6 @@ namespace Donkey_Kong
                 }
             }
         }
-
 
         // Check for collision with the top or bottom of the wall
         // Credit: gemaakt door chatgtp maar zelf moet aanpassen en uitzoeken hoe het werkt
@@ -230,7 +256,6 @@ namespace Donkey_Kong
             }
         }
 
-
         // collision met de onderkant van het platform
         // Credit: Zelf gemaakt maar het werkt door hulp van leerkracht
         private void checkCollisionPlatform(PictureBox platform)
@@ -241,6 +266,19 @@ namespace Donkey_Kong
                 force = 8;
                 Player.Top = platform.Top - Player.Height;
             }
+
+            // Deze code is voor de enemy zijn bounds van de platformen
+            foreach (Control c in this.Controls)
+            {
+                if(c is PictureBox && c.Name.StartsWith("Barrel"))
+                {
+                    if (c.Bounds.IntersectsWith(platform.Bounds))
+                    {
+                        c.Top = platform.Top - c.Height;
+                    }
+                }
+            }
+           
         }
         #endregion
 
@@ -336,7 +374,7 @@ namespace Donkey_Kong
             Player.Left = 256;
             Player.Top = 875;
 
-            Barrel.Left = 330;
+            //Barrel.Left = 330;
 
             GameTimer.Start();
         }
