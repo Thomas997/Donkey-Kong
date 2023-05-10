@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,16 +16,10 @@ namespace Donkey_Kong
     public partial class Platform : Form
     {
         // Variabelen
-        bool goLeft, goRight, jumping, isGameOver;
-
-        int jumpSpeed;
-        int force;
-        int score = 0;
-        int playerSpeed = 7;
+        bool goLeft, goRight, jumping, isGameOver, usingLadder, enemyGoLeft, enemyGoRight;
+        int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7;
 
         int barrelSpeed = 5;
-
-
         public Platform()
         {
             InitializeComponent();
@@ -37,48 +32,84 @@ namespace Donkey_Kong
 
         }
 
+        #region Main game timer
         // Dit is de timer hier gebeurd alles met beweging
         // Credit: https://youtu.be/rQBHwdEEL9I
         private void MainGameTimerEvent(object sender, EventArgs e)
         {
-            txtScore.Text = "Score: " + score;
+            score += 1;
 
-            // is voor naar links en rechts te kunnen gaan
-            Player.Top += jumpSpeed;
+            txtScore.Text = "" + score;
+            txtHighscore.Text = "" + score; //moet nog naar highsscore veranderd worden
 
+
+            if (enemyMovement() == true)
+            {
+                Barrel.Left += barrelSpeed;
+                Barrel.Top += 10;
+            }
+            else if (enemyMovement() == false)
+            {
+                Barrel.Left -= barrelSpeed;
+            }
+
+
+
+
+
+
+
+
+            // is voor naar links te gaan
             if (goLeft == true)
             {
                 Player.Left -= playerSpeed;
             }
 
+            // is voor naar rechts te gaan
             if (goRight == true)
             {
                 Player.Left += playerSpeed;
             }
 
-
-            // Dit zorgt er voor dat de game weet hoe hoog je springt en het checked of de force 0 is dus dat je mag springen
-            if (jumping == true && force < 0)
+            // als usingladder false is dan kan je springen anders is usingladder true en ben je een ladder aan het gebruiken
+            if (!usingLadder)
             {
-                jumping = false;
-            }
+                // Dankzij dit kun je omhoog gaan als je springt
+                Player.Top += jumpSpeed;
 
+                // Dit zorgt er voor dat de game weet hoe hoog je springt en het checked of de force 0 is dus dat je mag springen
+                if (jumping == true && force < 0)
+                {
+                    jumping = false;
+                }
 
-            // Als het springen begonnen is dan moeten de variabelen naar benden zodat het ook stopt anders mag het gewoon standaard zodat je kunt springen
-            if (jumping == true)
-            {
-                jumpSpeed = -7; //old variable -8
-                force -= 1;
+                // Als het springen begonnen is dan moeten de variabelen naar benden zodat het ook stopt anders mag het gewoon standaard zodat je kunt springen
+                if (jumping == true)
+                {
+                    jumpSpeed = -9; //old variable -8
+                    force -= 1;
+                }
+                else
+                {
+                    jumpSpeed = 9; //old variable 10
+                }
             }
             else
             {
-                jumpSpeed = 9; //old variable 10
+                // Dankzij dit kun je omhoog gaan als je de ladder gebruikt
+                Player.Top += speedLadderUp;
+                speedLadderUp = -4;
+
+                if (!IsPlayerOnLadder())
+                {
+                    usingLadder = false;
+                }
             }
 
 
             foreach (Control x in this.Controls)
             {
-
                 // Here we use the tag of the platforms to identify them as solid objects
                 // Credit: https://youtu.be/rQBHwdEEL9I
                 if ((string)x.Tag == "platform" && x is PictureBox)
@@ -92,8 +123,8 @@ namespace Donkey_Kong
 
                 if ((string)x.Tag == "ladder" && x is PictureBox)
                 {
-                    checkCollisionladder((PictureBox)x);
-
+                    // Dit is tegen clipping  van de ladders
+                    x.SendToBack();
                 }
 
                 // Here we use the tag of the platforms to identify them as solid objects
@@ -115,10 +146,46 @@ namespace Donkey_Kong
                     {
                         GameTimer.Stop();
                         isGameOver = true;
-                        txtScore.Text = "Score: " + score + Environment.NewLine + "KO";
+                        txtScore.Text = "" + score;
+                    }
+                    //Barrel.Left += barrelSpeed;
+                }
+            }
+        }
+        #endregion
+
+
+        #region Collisions
+        // deze code zorgt er voor dat als je de bounds van een ladder aanraakt dat usingladder true is zodat je kunt klimmen en niet meer kunt springen
+        private bool IsPlayerOnLadder()
+        {
+            foreach(Control x in this.Controls)
+            {
+                if(x is PictureBox && (String)x.Tag == "ladder")
+                {
+                    if (Player.Bounds.IntersectsWith(x.Bounds))
+                    {
+                        return true;
                     }
                 }
             }
+            return false;
+        }
+
+        private bool enemyMovement()
+        {
+            foreach (Control x in this.Controls)
+            {
+                if (x is PictureBox && (String)x.Tag == "enemyMovementCheckpoint")
+                {
+                    if (Barrel.Bounds.IntersectsWith(x.Bounds))
+                    {
+                        return true;
+                    }
+                    x.SendToBack();
+                }
+            }
+            return false;
         }
 
 
@@ -165,28 +232,20 @@ namespace Donkey_Kong
 
 
         // collision met de onderkant van het platform
-        // Credit:
+        // Credit: Zelf gemaakt maar het werkt door hulp van leerkracht
         private void checkCollisionPlatform(PictureBox platform)
         {
+            // Deze code zorgt er voor dat de game weet of je een platform raakt en zet het de variabelen en de player correct
             if (Player.Bounds.IntersectsWith(platform.Bounds) && Player.Bottom <= platform.Bottom && Player.Bottom >= platform.Top)
             {
                 force = 8;
                 Player.Top = platform.Top - Player.Height;
             }
-
         }
+        #endregion
 
 
-        private void checkCollisionladder(PictureBox ladder)
-        {
-            if (Player.Bounds.IntersectsWith(ladder.Bounds))
-            {
-                force = 8;
-                jumping = true;
-            }
-        }
-
-
+        #region Keybinds
         // Dit is als er een toets is in gedrukt
         // Credit: https://youtu.be/rQBHwdEEL9I
         private void KeyIsDown(object sender, KeyEventArgs e)
@@ -203,13 +262,14 @@ namespace Donkey_Kong
                 goRight = true;
             }
 
-
             // Dit is de code voor de spaciebalk en als je springt
             if (e.KeyCode == Keys.Space && jumping == false)
             {
                 jumping = true;
             }
 
+            // Dit is de code voor als je de key up in klikt en als de speler op de ladder is zodat je de variabelen usingladder op true zet zodat het werkt
+            usingLadder = (e.KeyCode == Keys.Up && IsPlayerOnLadder());
         }
 
 
@@ -235,14 +295,22 @@ namespace Donkey_Kong
                 jumping = false;
             }
 
+            // Dit is de code voor eindigen van het gebruiken van de ladder als dat al gebeurt is 
+            if (usingLadder == true)
+            {
+                //usingLadder = false;
+            }
+
             // Als er op enter wordt ge drukt herstart de game
             if (e.KeyCode == Keys.Enter && isGameOver == true)
             {
                 RestartGame();
             }
         }
+        #endregion
 
-
+        
+        #region restart events
         // Deze functie herstart het spel en reset de variabelen
         // Credit: https://youtu.be/rQBHwdEEL9I
         private void RestartGame()
@@ -253,7 +321,8 @@ namespace Donkey_Kong
             isGameOver = false;
             score = 0;
 
-            txtScore.Text = "Score: " + score;
+            txtScore.Text = "" + score;
+            txtHighscore.Text = "" + score; //moet nog aangepast worden naar highscore variabelen
 
             foreach (Control x in this.Controls)
             {
@@ -264,14 +333,13 @@ namespace Donkey_Kong
             }
 
             // Reset the position of player, platform and enemies
+            Player.Left = 256;
+            Player.Top = 875;
 
-            Player.Left = 335;
-            Player.Top = 614;
-
-            Barrelone.Left = 311;
+            Barrel.Left = 330;
 
             GameTimer.Start();
         }
-        
+        #endregion
     }
 }
