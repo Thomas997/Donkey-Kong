@@ -176,11 +176,10 @@ namespace Donkey_Kong
             menuItems[selectedMenuItemIndex].ForeColor = Color.Yellow;
             //Verander startactie
             //Credit: verschillende sites geholpen
-            Platform Platform = new Platform(MainTheme, name, this.Location); 
+            Platform Platform = new Platform(MainTheme, name); 
 
             //Nieuwe tab openen en deze dicht doen
             this.Hide();
-            Platform.Location = this.Location;
             Platform.ShowDialog();
             this.Close();
         }

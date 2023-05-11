@@ -19,13 +19,12 @@ namespace Donkey_Kong
         bool goLeft, goRight, jumping, isGameOver, usingLadder;
         int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 5;
         Point existingFormLocation;
-        public Platform(AudioPlayer MainTheme, string name, Point existingFormLocation)
+        public Platform(AudioPlayer MainTheme, string name)
         {
             InitializeComponent();
             AudioPlayer GameMusic = new AudioPlayer(Donkey_Kong.Properties.Resources.Game);
             GameMusic.Play();
             MainTheme.Dispose();
-            this.existingFormLocation = existingFormLocation;
         }
 
         private void Form1_Load(object sender, EventArgs e)
