@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 using NAudio.Wave;
 using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 
 namespace Donkey_Kong
 {
@@ -31,6 +32,7 @@ namespace Donkey_Kong
         AudioPlayer button = new AudioPlayer(Donkey_Kong.Properties.Resources.button);
         AudioPlayer MainTheme = new AudioPlayer(Donkey_Kong.Properties.Resources.DKtheme);
         AudioPlayer select = new AudioPlayer(Donkey_Kong.Properties.Resources.blipSelect);
+
         public MainMenu(bool isThemePlaying)
         {
             InitializeComponent();
@@ -107,13 +109,35 @@ namespace Donkey_Kong
                             button.Play();
                             Task.Delay(5000);
                             // Vraag de gebruiker voor een username
-                            string name = "";
+                            //Credit: ChatGPT
+                            string name = "Anonymous";
                             using (var form = new Form())
                             {
+                                form.BackColor = Color.Black;
+                                form.ForeColor = Color.White;
+                                form.Font = new Font("Kongtext", 12, FontStyle.Regular);
+                                form.ClientSize = new Size(300, 150);
                                 form.Text = "Enter your name";
-                                var textBox = new TextBox() { Left = 50, Top = 50 };
-                                var button = new Button() { Text = "Ok", Left = 100, Width = 100, Top = 75, DialogResult = DialogResult.OK };
+                                form.FormBorderStyle = FormBorderStyle.FixedDialog;
+                                form.MaximizeBox = false;
+                                form.MinimizeBox = false;
+                                form.StartPosition = FormStartPosition.CenterScreen;
+
+                                var textBox = new TextBox()
+                                {
+                                    Left = 15,
+                                    Top = 15,
+                                    Width = 250,
+                                    BackColor = Color.Black,
+                                    ForeColor = Color.White,
+                                    Font = new Font("Kongtext", 26),
+                                    BorderStyle = BorderStyle.None
+                                };
+                                textBox.TextAlign = HorizontalAlignment.Center;
+                                var button = new Button() { Text = "SUBMIT", Left = 42, Width = 200, Height = 50, Top = 75, DialogResult = DialogResult.OK };
+
                                 button.Click += (sender2, e2) => { form.Close(); };
+
                                 form.Controls.Add(textBox);
                                 form.Controls.Add(button);
                                 form.AcceptButton = button;
@@ -152,10 +176,11 @@ namespace Donkey_Kong
             menuItems[selectedMenuItemIndex].ForeColor = Color.Yellow;
             //Verander startactie
             //Credit: verschillende sites geholpen
-            Platform Platform = new Platform(MainTheme, name); 
+            Platform Platform = new Platform(MainTheme, name, this.Location); 
 
             //Nieuwe tab openen en deze dicht doen
             this.Hide();
+            Platform.Location = this.Location;
             Platform.ShowDialog();
             this.Close();
         }

@@ -149,16 +149,6 @@ namespace Donkey_Kong.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] Database {
-            get {
-                object obj = ResourceManager.GetObject("Database", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap DK {
@@ -189,9 +179,9 @@ namespace Donkey_Kong.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap kong {
+        internal static System.Drawing.Bitmap Kong {
             get {
-                object obj = ResourceManager.GetObject("kong", resourceCulture);
+                object obj = ResourceManager.GetObject("Kong", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -232,6 +222,16 @@ namespace Donkey_Kong.Properties {
         internal static System.Drawing.Bitmap Life {
             get {
                 object obj = ResourceManager.GetObject("Life", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MarioHammer2 {
+            get {
+                object obj = ResourceManager.GetObject("MarioHammer2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -184,5 +184,47 @@
   <ItemGroup>
     <None Include="Resources\scream.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Barrel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Barrel2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Barrel3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Barrel4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BarrelLadder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BarrelLadder2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Barrels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Kong.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ladder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Life.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MarioHammer2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Platform.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Princess.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
