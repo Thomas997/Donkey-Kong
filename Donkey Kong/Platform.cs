@@ -17,15 +17,7 @@ namespace Donkey_Kong
     {
         // Variabelen
         bool goLeft, goRight, jumping, isGameOver, usingLadder;
-        int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 5;
-
-        int jumpSpeed;
-        int force;
-        int score = 0;
-        int playerSpeed = 7;
-
-        int barrelSpeed = 5;
-
+        int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 8;
 
         public Platform(AudioPlayer MainTheme, string name)
         {
@@ -51,14 +43,13 @@ namespace Donkey_Kong
             int index = random.Next(0, 3);
 
             // Define the available interval options
-            int[] intervals = { 3000, 5000, 7000 };
+            int[] intervals = { 1000, 2000, 3000 };
 
             // Retrieve the randomly selected interval
             int interval = intervals[index];
 
             // Update the timer interval
             BarrelTimer.Interval = interval;
-
 
             // hier maken we de barrel aan in de code zelf niet meer een picture box in de form geplaatst en we her gebruiken al de variabelen van de oude barrel
             PictureBox barrel = new PictureBox();
@@ -93,7 +84,7 @@ namespace Donkey_Kong
                     {
                         c.Left += barrelSpeed;
                         c.Top += 10;
-                        if(c.Left > rightSidewall.Left - 30)
+                        if(c.Left > pbxRightSidewall.Left - 30)
                         {
                             c.Tag = "left";
                         }
@@ -103,32 +94,39 @@ namespace Donkey_Kong
                     {
                         c.Left -= barrelSpeed;
                         c.Top += 10;
-                        if (c.Left < leftSidewall.Left + leftSidewall.Width)
+                        if (c.Left < pbxLeftSidewall.Left + pbxLeftSidewall.Width)
                         {
                             c.Tag = "right";
                         }
                     }
 
+                    // zegt dat als de speler collide met de enemy dan eindigt het spel (timers af)
+                    // Credit: https://youtu.be/rQBHwdEEL9I + chatgtp
+                    PictureBox barrel = (PictureBox)c;
+
+                    IfPlayerTouchBarrelStopGame((PictureBox)barrel);
+
+                    RemoveBarrelAtEndOfBarrelTrack((PictureBox)barrel);
                 }
             }
 
             // is voor naar links te gaan
             if (goLeft == true)
             {
-                Player.Left -= playerSpeed;
+                pbxPlayer.Left -= playerSpeed;
             }
 
             // is voor naar rechts te gaan
             if (goRight == true)
             {
-                Player.Left += playerSpeed;
+                pbxPlayer.Left += playerSpeed;
             }
 
             // als usingladder false is dan kan je springen anders is usingladder true en ben je een ladder aan het gebruiken
             if (!usingLadder)
             {
                 // Dankzij dit kun je omhoog gaan als je springt
-                Player.Top += jumpSpeed;
+                pbxPlayer.Top += jumpSpeed;
 
                 // Dit zorgt er voor dat de game weet hoe hoog je springt en het checked of de force 0 is dus dat je mag springen
                 if (jumping == true && force < 0)
@@ -150,7 +148,7 @@ namespace Donkey_Kong
             else
             {
                 // Dankzij dit kun je omhoog gaan als je de ladder gebruikt
-                Player.Top += speedLadderUp;
+                pbxPlayer.Top += speedLadderUp;
                 speedLadderUp = -4;
 
                 if (!IsPlayerOnLadder())
@@ -165,8 +163,7 @@ namespace Donkey_Kong
                 // Credit: https://youtu.be/rQBHwdEEL9I
                 if ((string)x.Tag == "platform" && x is PictureBox)
                 {
-
-                    checkCollisionPlatform((PictureBox)x);
+                    IfSidewallCollisionSetPlayerRightOnPlatform((PictureBox)x);
 
                     // Dit is voor het gelitch bij de speler in te perken als dit er niet is dan kan de speler sprite door het platform glitchen
                     x.BringToFront();
@@ -183,38 +180,36 @@ namespace Donkey_Kong
                 if ((string)x.Tag == "sidewall" && x is PictureBox)
                 {
                     // Check for collision with the wall
-                    checkSidewallCollision((PictureBox)x);
-
-                    // Check for collision with the top or bottom of the wall
-                    checkCollisionTopBottomWall((PictureBox)x);
-                }
-
-                // Dit is de code voor de enemy het zegt dat als de speler collide met de enemy dan eindigt het spel (timer af)
-                // Credit: https://youtu.be/rQBHwdEEL9I
-
-
-
-
-                foreach (Control c in this.Controls)
-                {
-                    // hier stoppen we da game 
-                    if (c is PictureBox && c.Name.StartsWith("Barrel"))
-                    {
-                        if (Player.Bounds.IntersectsWith(x.Bounds))
-                        {
-                            //GameTimer.Stop();
-                            //BarrelTimer.Stop();
-                            isGameOver = true;
-                            txtScore.Text = "" + score;
-                        }
-                    }
+                    IfSidewallCollisionStopPlayer((PictureBox)x);
                 }
             }
         }
         #endregion
 
-
         #region Collisions
+        // Stopt de timers en herstart het spel
+        // Credit: chatgtp + mezelf
+        private void IfPlayerTouchBarrelStopGame(PictureBox barrel)
+        {
+            if (pbxPlayer.Bounds.IntersectsWith(barrel.Bounds))
+            {
+                // Handle the collision (player hit the barrel)
+                GameTimer.Stop();
+                BarrelTimer.Stop();
+                isGameOver = true;
+                txtScore.Text = score.ToString();
+            }
+        }
+
+        private void RemoveBarrelAtEndOfBarrelTrack(PictureBox barrel)
+        {
+            if (pbxBarrelRemoval.Bounds.IntersectsWith(barrel.Bounds))
+            {
+                this.Controls.Remove(barrel);
+                barrel.Dispose(); // Optional: Dispose the barrel to release resources
+            }
+        }
+
         // deze code zorgt er voor dat als je de bounds van een ladder aanraakt dat usingladder true is zodat je kunt klimmen en niet meer kunt springen
         private bool IsPlayerOnLadder()
         {
@@ -222,7 +217,7 @@ namespace Donkey_Kong
             {
                 if(x is PictureBox && (String)x.Tag == "ladder")
                 {
-                    if (Player.Bounds.IntersectsWith(x.Bounds))
+                    if (pbxPlayer.Bounds.IntersectsWith(x.Bounds))
                     {
                         return true;
                     }
@@ -233,53 +228,37 @@ namespace Donkey_Kong
 
         // Check for collision with the wall
         // Credit: gemaakt door chatgtp maar zelf moet aanpassen en uitzoeken hoe het werkt
-        private void checkSidewallCollision(PictureBox sidewall)
+        /// <summary>
+        /// Als de speler de sidewall raakt stopt de speler tegen de sidewall en gaat het terug op het platform voor de sidewall.
+        /// </summary>
+        /// <param name="sidewall">dit is de picturebox van de sidewall</param>
+        private void IfSidewallCollisionStopPlayer(PictureBox sidewall)
         {
-            if (Player.Bounds.IntersectsWith(sidewall.Bounds))
+            if (pbxPlayer.Bounds.IntersectsWith(sidewall.Bounds))
             {
                 // If the player is moving to the right, move them back to the left of the wall
                 if (goRight)
                 {
-                    Player.Left = sidewall.Left - Player.Width;
+                    pbxPlayer.Left = sidewall.Left - pbxPlayer.Width;
                 }
 
                 // If the player is moving to the left, move them back to the right of the wall
                 if (goLeft)
                 {
-                    Player.Left = sidewall.Right;
-                }
-            }
-        }
-
-        // Check for collision with the top or bottom of the wall
-        // Credit: gemaakt door chatgtp maar zelf moet aanpassen en uitzoeken hoe het werkt
-        private void checkCollisionTopBottomWall(PictureBox sidewall)
-        {
-            if (Player.Bounds.IntersectsWith(sidewall.Bounds))
-            {
-                // If the player is moving down, move them back up to the top of the wall
-                if (force > 0)
-                {
-                    Player.Top = sidewall.Top - Player.Height;
-                }
-
-                // If the player is moving up, move them back down to the bottom of the wall
-                else if (force < 0)
-                {
-                    Player.Top = sidewall.Bottom;
+                    pbxPlayer.Left = sidewall.Right;
                 }
             }
         }
 
         // collision met de onderkant van het platform
         // Credit: Zelf gemaakt maar het werkt door hulp van leerkracht
-        private void checkCollisionPlatform(PictureBox platform)
+        private void IfSidewallCollisionSetPlayerRightOnPlatform(PictureBox platform)
         {
             // Deze code zorgt er voor dat de game weet of je een platform raakt en zet het de variabelen en de player correct
-            if (Player.Bounds.IntersectsWith(platform.Bounds) && Player.Bottom <= platform.Bottom && Player.Bottom >= platform.Top)
+            if (pbxPlayer.Bounds.IntersectsWith(platform.Bounds) && pbxPlayer.Bottom <= platform.Bottom && pbxPlayer.Bottom >= platform.Top)
             {
                 force = 8;
-                Player.Top = platform.Top - Player.Height;
+                pbxPlayer.Top = platform.Top - pbxPlayer.Height;
             }
 
             // Deze code is voor de enemy zijn bounds van de platformen
@@ -296,7 +275,6 @@ namespace Donkey_Kong
            
         }
         #endregion
-
 
         #region Keybinds
         // Dit is als er een toets is in gedrukt
@@ -362,12 +340,12 @@ namespace Donkey_Kong
         }
         #endregion
 
-        
         #region restart events
         // Deze functie herstart het spel en reset de variabelen
         // Credit: https://youtu.be/rQBHwdEEL9I
         private void RestartGame()
         {
+            // zet alle controls af zodat je niets meer kunt doen terwijl je herstart
             jumping = false;
             goLeft = false;
             goRight = false;
@@ -385,9 +363,18 @@ namespace Donkey_Kong
                 }
             }
 
+            for(int i = this.Controls.Count - 1; i >= 0; i--)
+            {
+                Control x = this.Controls[i];
+                if (x is PictureBox && x.Name.StartsWith("Barrel"))
+                {
+                    this.Controls.RemoveAt(i);
+                }
+            }
+
             // Reset the position of player, platform and enemies
-            Player.Left = 256;
-            Player.Top = 875;
+            pbxPlayer.Left = 256;
+            pbxPlayer.Top = 875;
 
             BarrelTimer.Start();
             GameTimer.Start();
@@ -397,7 +384,6 @@ namespace Donkey_Kong
         //Full credit: ChatGPT
         public static void SaveHighScore(string name, int score)
         {
-
             // Haal de spelernaam op
             string playerName = name;
             int playerScore = score;
