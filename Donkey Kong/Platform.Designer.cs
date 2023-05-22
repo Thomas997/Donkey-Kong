@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Platform));
             this.txtScore = new System.Windows.Forms.Label();
             this.pbxPlatform1 = new System.Windows.Forms.PictureBox();
             this.pbxPlatform2 = new System.Windows.Forms.PictureBox();
@@ -37,7 +38,7 @@
             this.pbxPlatform4 = new System.Windows.Forms.PictureBox();
             this.pbxPlatform6 = new System.Windows.Forms.PictureBox();
             this.pbxPlayer = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pbxEnd = new System.Windows.Forms.PictureBox();
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.pbxRightSidewall = new System.Windows.Forms.PictureBox();
             this.pbxLeftSidewall = new System.Windows.Forms.PictureBox();
@@ -66,7 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxPlatform4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPlatform6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPlayer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxRightSidewall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLeftSidewall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLadder1)).BeginInit();
@@ -97,8 +98,9 @@
             // 
             // pbxPlatform1
             // 
-            this.pbxPlatform1.BackColor = System.Drawing.Color.Pink;
-            this.pbxPlatform1.Location = new System.Drawing.Point(201, 911);
+            this.pbxPlatform1.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxPlatform1.BackgroundImage = global::Donkey_Kong.Properties.Resources.Platform;
+            this.pbxPlatform1.Location = new System.Drawing.Point(201, 916);
             this.pbxPlatform1.Name = "pbxPlatform1";
             this.pbxPlatform1.Size = new System.Drawing.Size(656, 29);
             this.pbxPlatform1.TabIndex = 1;
@@ -107,8 +109,9 @@
             // 
             // pbxPlatform2
             // 
-            this.pbxPlatform2.BackColor = System.Drawing.Color.Pink;
-            this.pbxPlatform2.Location = new System.Drawing.Point(201, 776);
+            this.pbxPlatform2.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxPlatform2.BackgroundImage = global::Donkey_Kong.Properties.Resources.Platform;
+            this.pbxPlatform2.Location = new System.Drawing.Point(201, 768);
             this.pbxPlatform2.Name = "pbxPlatform2";
             this.pbxPlatform2.Size = new System.Drawing.Size(527, 29);
             this.pbxPlatform2.TabIndex = 2;
@@ -117,8 +120,9 @@
             // 
             // pbxPlatform3
             // 
-            this.pbxPlatform3.BackColor = System.Drawing.Color.Pink;
-            this.pbxPlatform3.Location = new System.Drawing.Point(330, 640);
+            this.pbxPlatform3.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxPlatform3.BackgroundImage = global::Donkey_Kong.Properties.Resources.Platform;
+            this.pbxPlatform3.Location = new System.Drawing.Point(330, 622);
             this.pbxPlatform3.Name = "pbxPlatform3";
             this.pbxPlatform3.Size = new System.Drawing.Size(527, 30);
             this.pbxPlatform3.TabIndex = 3;
@@ -127,8 +131,9 @@
             // 
             // pbxPlatform5
             // 
-            this.pbxPlatform5.BackColor = System.Drawing.Color.Pink;
-            this.pbxPlatform5.Location = new System.Drawing.Point(330, 370);
+            this.pbxPlatform5.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxPlatform5.BackgroundImage = global::Donkey_Kong.Properties.Resources.Platform;
+            this.pbxPlatform5.Location = new System.Drawing.Point(330, 336);
             this.pbxPlatform5.Name = "pbxPlatform5";
             this.pbxPlatform5.Size = new System.Drawing.Size(527, 30);
             this.pbxPlatform5.TabIndex = 4;
@@ -137,8 +142,9 @@
             // 
             // pbxPlatform4
             // 
-            this.pbxPlatform4.BackColor = System.Drawing.Color.Pink;
-            this.pbxPlatform4.Location = new System.Drawing.Point(201, 505);
+            this.pbxPlatform4.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxPlatform4.BackgroundImage = global::Donkey_Kong.Properties.Resources.Platform;
+            this.pbxPlatform4.Location = new System.Drawing.Point(201, 479);
             this.pbxPlatform4.Name = "pbxPlatform4";
             this.pbxPlatform4.Size = new System.Drawing.Size(527, 30);
             this.pbxPlatform4.TabIndex = 5;
@@ -147,8 +153,9 @@
             // 
             // pbxPlatform6
             // 
-            this.pbxPlatform6.BackColor = System.Drawing.Color.Pink;
-            this.pbxPlatform6.Location = new System.Drawing.Point(201, 237);
+            this.pbxPlatform6.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxPlatform6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxPlatform6.BackgroundImage")));
+            this.pbxPlatform6.Location = new System.Drawing.Point(201, 191);
             this.pbxPlatform6.Name = "pbxPlatform6";
             this.pbxPlatform6.Size = new System.Drawing.Size(527, 30);
             this.pbxPlatform6.TabIndex = 6;
@@ -164,14 +171,16 @@
             this.pbxPlayer.TabIndex = 7;
             this.pbxPlayer.TabStop = false;
             // 
-            // pictureBox7
+            // pbxEnd
             // 
-            this.pictureBox7.BackColor = System.Drawing.Color.DarkGreen;
-            this.pictureBox7.Location = new System.Drawing.Point(201, 164);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(59, 73);
-            this.pictureBox7.TabIndex = 8;
-            this.pictureBox7.TabStop = false;
+            this.pbxEnd.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxEnd.BackgroundImage = global::Donkey_Kong.Properties.Resources.Princess;
+            this.pbxEnd.Location = new System.Drawing.Point(481, 12);
+            this.pbxEnd.Name = "pbxEnd";
+            this.pbxEnd.Size = new System.Drawing.Size(62, 92);
+            this.pbxEnd.TabIndex = 8;
+            this.pbxEnd.TabStop = false;
+            this.pbxEnd.Tag = "End";
             // 
             // GameTimer
             // 
@@ -199,31 +208,33 @@
             // 
             // pbxLadder1
             // 
-            this.pbxLadder1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pbxLadder1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pbxLadder1.Location = new System.Drawing.Point(677, 776);
+            this.pbxLadder1.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxLadder1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxLadder1.BackgroundImage")));
+            this.pbxLadder1.Location = new System.Drawing.Point(677, 768);
             this.pbxLadder1.Name = "pbxLadder1";
-            this.pbxLadder1.Size = new System.Drawing.Size(40, 139);
+            this.pbxLadder1.Size = new System.Drawing.Size(40, 147);
             this.pbxLadder1.TabIndex = 12;
             this.pbxLadder1.TabStop = false;
             this.pbxLadder1.Tag = "ladder";
             // 
             // pbxLadder7
             // 
-            this.pbxLadder7.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pbxLadder7.Location = new System.Drawing.Point(348, 370);
+            this.pbxLadder7.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxLadder7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxLadder7.BackgroundImage")));
+            this.pbxLadder7.Location = new System.Drawing.Point(348, 336);
             this.pbxLadder7.Name = "pbxLadder7";
-            this.pbxLadder7.Size = new System.Drawing.Size(40, 139);
+            this.pbxLadder7.Size = new System.Drawing.Size(40, 147);
             this.pbxLadder7.TabIndex = 15;
             this.pbxLadder7.TabStop = false;
             this.pbxLadder7.Tag = "ladder";
             // 
             // pbxLadder8
             // 
-            this.pbxLadder8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pbxLadder8.Location = new System.Drawing.Point(665, 237);
+            this.pbxLadder8.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxLadder8.BackgroundImage = global::Donkey_Kong.Properties.Resources.Ladder;
+            this.pbxLadder8.Location = new System.Drawing.Point(654, 191);
             this.pbxLadder8.Name = "pbxLadder8";
-            this.pbxLadder8.Size = new System.Drawing.Size(40, 139);
+            this.pbxLadder8.Size = new System.Drawing.Size(40, 147);
             this.pbxLadder8.TabIndex = 16;
             this.pbxLadder8.TabStop = false;
             this.pbxLadder8.Tag = "ladder";
@@ -268,8 +279,9 @@
             // 
             // pbxEindPlatform
             // 
-            this.pbxEindPlatform.BackColor = System.Drawing.Color.Pink;
-            this.pbxEindPlatform.Location = new System.Drawing.Point(473, 128);
+            this.pbxEindPlatform.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxEindPlatform.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxEindPlatform.BackgroundImage")));
+            this.pbxEindPlatform.Location = new System.Drawing.Point(473, 91);
             this.pbxEindPlatform.Name = "pbxEindPlatform";
             this.pbxEindPlatform.Size = new System.Drawing.Size(175, 30);
             this.pbxEindPlatform.TabIndex = 20;
@@ -278,18 +290,20 @@
             // 
             // pbxLadder9
             // 
-            this.pbxLadder9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pbxLadder9.Location = new System.Drawing.Point(608, 128);
+            this.pbxLadder9.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxLadder9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxLadder9.BackgroundImage")));
+            this.pbxLadder9.Location = new System.Drawing.Point(608, 104);
             this.pbxLadder9.Name = "pbxLadder9";
-            this.pbxLadder9.Size = new System.Drawing.Size(40, 139);
+            this.pbxLadder9.Size = new System.Drawing.Size(40, 90);
             this.pbxLadder9.TabIndex = 21;
             this.pbxLadder9.TabStop = false;
             this.pbxLadder9.Tag = "ladder";
             // 
             // pbxPlatformPrinces
             // 
-            this.pbxPlatformPrinces.BackColor = System.Drawing.Color.Pink;
-            this.pbxPlatformPrinces.Location = new System.Drawing.Point(360, 156);
+            this.pbxPlatformPrinces.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxPlatformPrinces.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxPlatformPrinces.BackgroundImage")));
+            this.pbxPlatformPrinces.Location = new System.Drawing.Point(360, 119);
             this.pbxPlatformPrinces.Name = "pbxPlatformPrinces";
             this.pbxPlatformPrinces.Size = new System.Drawing.Size(115, 30);
             this.pbxPlatformPrinces.TabIndex = 22;
@@ -298,70 +312,77 @@
             // 
             // pbxLadder10
             // 
-            this.pbxLadder10.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.pbxLadder10.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxLadder10.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxLadder10.BackgroundImage")));
             this.pbxLadder10.Location = new System.Drawing.Point(435, -2);
             this.pbxLadder10.Name = "pbxLadder10";
-            this.pbxLadder10.Size = new System.Drawing.Size(40, 239);
+            this.pbxLadder10.Size = new System.Drawing.Size(40, 196);
             this.pbxLadder10.TabIndex = 23;
             this.pbxLadder10.TabStop = false;
             this.pbxLadder10.Tag = "ladder";
             // 
             // pbxLadder11
             // 
-            this.pbxLadder11.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.pbxLadder11.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxLadder11.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxLadder11.BackgroundImage")));
             this.pbxLadder11.Location = new System.Drawing.Point(360, -2);
             this.pbxLadder11.Name = "pbxLadder11";
-            this.pbxLadder11.Size = new System.Drawing.Size(40, 239);
+            this.pbxLadder11.Size = new System.Drawing.Size(40, 196);
             this.pbxLadder11.TabIndex = 24;
             this.pbxLadder11.TabStop = false;
             this.pbxLadder11.Tag = "ladder";
             // 
             // pbxLadder3
             // 
-            this.pbxLadder3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pbxLadder3.Location = new System.Drawing.Point(348, 640);
+            this.pbxLadder3.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxLadder3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxLadder3.BackgroundImage")));
+            this.pbxLadder3.Location = new System.Drawing.Point(348, 622);
             this.pbxLadder3.Name = "pbxLadder3";
-            this.pbxLadder3.Size = new System.Drawing.Size(40, 139);
+            this.pbxLadder3.Size = new System.Drawing.Size(40, 147);
             this.pbxLadder3.TabIndex = 25;
             this.pbxLadder3.TabStop = false;
             this.pbxLadder3.Tag = "ladder";
             // 
             // pbxLadder5
             // 
-            this.pbxLadder5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pbxLadder5.Location = new System.Drawing.Point(677, 505);
+            this.pbxLadder5.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxLadder5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxLadder5.BackgroundImage")));
+            this.pbxLadder5.Location = new System.Drawing.Point(677, 479);
             this.pbxLadder5.Name = "pbxLadder5";
-            this.pbxLadder5.Size = new System.Drawing.Size(40, 139);
+            this.pbxLadder5.Size = new System.Drawing.Size(40, 147);
             this.pbxLadder5.TabIndex = 26;
             this.pbxLadder5.TabStop = false;
             this.pbxLadder5.Tag = "ladder";
             // 
             // pbxLadder2
             // 
-            this.pbxLadder2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pbxLadder2.Location = new System.Drawing.Point(473, 640);
+            this.pbxLadder2.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxLadder2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxLadder2.BackgroundImage")));
+            this.pbxLadder2.Location = new System.Drawing.Point(435, 622);
             this.pbxLadder2.Name = "pbxLadder2";
-            this.pbxLadder2.Size = new System.Drawing.Size(40, 139);
+            this.pbxLadder2.Size = new System.Drawing.Size(40, 147);
             this.pbxLadder2.TabIndex = 27;
             this.pbxLadder2.TabStop = false;
             this.pbxLadder2.Tag = "ladder";
             // 
             // pbxLadder4
             // 
-            this.pbxLadder4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pbxLadder4.Location = new System.Drawing.Point(557, 505);
+            this.pbxLadder4.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxLadder4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxLadder4.BackgroundImage")));
+            this.pbxLadder4.Location = new System.Drawing.Point(538, 479);
             this.pbxLadder4.Name = "pbxLadder4";
-            this.pbxLadder4.Size = new System.Drawing.Size(40, 139);
+            this.pbxLadder4.Size = new System.Drawing.Size(40, 147);
             this.pbxLadder4.TabIndex = 28;
             this.pbxLadder4.TabStop = false;
             this.pbxLadder4.Tag = "ladder";
             // 
             // pbxLadder6
             // 
-            this.pbxLadder6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pbxLadder6.Location = new System.Drawing.Point(473, 370);
+            this.pbxLadder6.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxLadder6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxLadder6.BackgroundImage")));
+            this.pbxLadder6.Location = new System.Drawing.Point(473, 336);
             this.pbxLadder6.Name = "pbxLadder6";
-            this.pbxLadder6.Size = new System.Drawing.Size(40, 139);
+            this.pbxLadder6.Size = new System.Drawing.Size(40, 147);
             this.pbxLadder6.TabIndex = 29;
             this.pbxLadder6.TabStop = false;
             this.pbxLadder6.Tag = "ladder";
@@ -370,7 +391,7 @@
             // 
             this.pbxBarrelRemoval.Location = new System.Drawing.Point(201, 861);
             this.pbxBarrelRemoval.Name = "pbxBarrelRemoval";
-            this.pbxBarrelRemoval.Size = new System.Drawing.Size(35, 54);
+            this.pbxBarrelRemoval.Size = new System.Drawing.Size(10, 54);
             this.pbxBarrelRemoval.TabIndex = 30;
             this.pbxBarrelRemoval.TabStop = false;
             // 
@@ -399,7 +420,7 @@
             this.Controls.Add(this.pbxLadder1);
             this.Controls.Add(this.pbxLeftSidewall);
             this.Controls.Add(this.pbxRightSidewall);
-            this.Controls.Add(this.pictureBox7);
+            this.Controls.Add(this.pbxEnd);
             this.Controls.Add(this.pbxPlayer);
             this.Controls.Add(this.pbxPlatform6);
             this.Controls.Add(this.pbxPlatform4);
@@ -424,7 +445,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxPlatform4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPlatform6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPlayer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxEnd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxRightSidewall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLeftSidewall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLadder1)).EndInit();
@@ -455,7 +476,7 @@
         private System.Windows.Forms.PictureBox pbxPlatform4;
         private System.Windows.Forms.PictureBox pbxPlatform6;
         private System.Windows.Forms.PictureBox pbxPlayer;
-        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pbxEnd;
         private System.Windows.Forms.Timer GameTimer;
         private System.Windows.Forms.PictureBox pbxRightSidewall;
         private System.Windows.Forms.PictureBox pbxLeftSidewall;

@@ -122,7 +122,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Donkey_Kong.Properties.Resources.kong;
+            this.pictureBox1.Image = global::Donkey_Kong.Properties.Resources.kong2;
             this.pictureBox1.Location = new System.Drawing.Point(325, 202);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(416, 288);

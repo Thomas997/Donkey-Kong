@@ -17,6 +17,9 @@ namespace Donkey_Kong
     {
         // Variabelen
         bool goLeft, goRight, jumping, isGameOver, usingLadder;
+
+        bool isPaused = false;
+
         int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 8;
 
         public Platform(AudioPlayer MainTheme, string name)
@@ -29,11 +32,11 @@ namespace Donkey_Kong
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            pbxBarrelRemoval.SendToBack();
         }
 
         #region Barrel timer
-        // dit is de timer van de barrels te laten spawnen
+        //dit is de timer van de barrels te laten spawnen
         private void BarrelTimer_Tick(object sender, EventArgs e)
         {
             // Create a random number generator
@@ -182,11 +185,28 @@ namespace Donkey_Kong
                     // Check for collision with the wall
                     IfSidewallCollisionStopPlayer((PictureBox)x);
                 }
+
+                // 
+                if ((string)x.Tag == "End" && x is PictureBox)
+                {
+                    IfPlayerTouchEndStopGameAndRestard((PictureBox)x);
+                }
             }
         }
         #endregion
 
         #region Collisions
+        // code voor end of the game
+        private void IfPlayerTouchEndStopGameAndRestard(PictureBox FinalDestination)
+        {
+            if (pbxPlayer.Bounds.IntersectsWith(FinalDestination.Bounds))
+            {
+                RestartGame();
+
+                score = score + 50;
+            }
+        }
+
         // Stopt de timers en herstart het spel
         // Credit: chatgtp + mezelf
         private void IfPlayerTouchBarrelStopGame(PictureBox barrel)
@@ -293,11 +313,25 @@ namespace Donkey_Kong
                 goRight = true;
             }
 
-            // Dit is de code voor de spaciebalk en als je springt
+            // Springen wordt op true gezet als spaciebalk wordt ingedrukt
             if (e.KeyCode == Keys.Space && jumping == false)
             {
                 jumping = true;
             }
+
+            // Als P wordt ingedrukt dan stoppen de timers (game pauze)
+            if (e.KeyCode == Keys.P)
+            {
+                GameTimer.Stop();
+                BarrelTimer.Stop();
+            }
+            // Als P knop niet ingedrukt is dan gaan de timers verder
+            if (e.KeyCode == Keys.P)
+            {
+                GameTimer.Start();
+                BarrelTimer.Start();
+            }
+
 
             // Dit is de code voor als je de key up in klikt en als de speler op de ladder is zodat je de variabelen usingladder op true zet zodat het werkt
             usingLadder = (e.KeyCode == Keys.Up && IsPlayerOnLadder());
@@ -337,6 +371,9 @@ namespace Donkey_Kong
             {
                 RestartGame();
             }
+
+            
+
         }
         #endregion
 
