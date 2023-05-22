@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Donkey_Kong;
 
 namespace Donkey_Kong
 {
@@ -20,11 +21,14 @@ namespace Donkey_Kong
 
         bool isPaused = false;
 
-        int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 8;
+        int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 0;
+
+        private string playerName; // Declareer name als een veld in deze class
 
         public Platform(AudioPlayer MainTheme, string name)
         {
             InitializeComponent();
+            playerName = name;
             AudioPlayer GameMusic = new AudioPlayer(Donkey_Kong.Properties.Resources.Game);
             GameMusic.Play();
             MainTheme.Dispose();
@@ -71,6 +75,8 @@ namespace Donkey_Kong
         #region Main game timer
         // Dit is de timer hier gebeurd alles met beweging
         // Credit: https://youtu.be/rQBHwdEEL9I
+
+
         private void MainGameTimerEvent(object sender, EventArgs e)
         {
             txtScore.Text = "" + score;
@@ -189,7 +195,7 @@ namespace Donkey_Kong
                 // 
                 if ((string)x.Tag == "End" && x is PictureBox)
                 {
-                    IfPlayerTouchEndStopGameAndRestard((PictureBox)x);
+                    IfPlayerTouchEndStopGameAndRestard((PictureBox)x, playerName);
                 }
             }
         }
@@ -197,13 +203,16 @@ namespace Donkey_Kong
 
         #region Collisions
         // code voor end of the game
-        private void IfPlayerTouchEndStopGameAndRestard(PictureBox FinalDestination)
+        private void IfPlayerTouchEndStopGameAndRestard(PictureBox FinalDestination, string playerName)
         {
             if (pbxPlayer.Bounds.IntersectsWith(FinalDestination.Bounds))
             {
                 RestartGame();
-
                 score = score + 50;
+
+                string date = DateTime.Now.ToString("yyyy-MM-dd");
+
+                DatabaseHelper.AddOrUpdateHighScore(playerName, score, date);
             }
         }
 
