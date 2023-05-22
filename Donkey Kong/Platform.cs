@@ -16,11 +16,8 @@ namespace Donkey_Kong
     public partial class Platform : Form
     {
         // Variabelen
-        bool goLeft, goRight, jumping, isGameOver, usingLadder;
-
-        bool isPaused = false;
-
-        int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 8;
+        bool goLeft, goRight, jumping, isGameOver, usingLadder, isPaused = false;
+        int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 8, timesWon = 0;
 
         public Platform(AudioPlayer MainTheme, string name)
         {
@@ -32,6 +29,7 @@ namespace Donkey_Kong
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // geen clipping met barrelremoval picturebox
             pbxBarrelRemoval.SendToBack();
         }
 
@@ -74,7 +72,7 @@ namespace Donkey_Kong
         private void MainGameTimerEvent(object sender, EventArgs e)
         {
             txtScore.Text = "" + score;
-            txtHighscore.Text = "" + score; //moet nog naar highsscore veranderd worden
+            //txtHighscore.Text = "" + score; //moet nog naar highsscore veranderd worden
 
             // deze foreach zorgt er voor dat we meerdere barrels gaan kunnen gebruiken
             foreach(Control c in this.Controls)
@@ -162,7 +160,7 @@ namespace Donkey_Kong
 
             foreach (Control x in this.Controls)
             {
-                // Here we use the tag of the platforms to identify them as solid objects
+                // Hier gebruiken we de tag van de platformen om ze te identificeren als vaste objecten
                 // Credit: https://youtu.be/rQBHwdEEL9I
                 if ((string)x.Tag == "platform" && x is PictureBox)
                 {
@@ -178,7 +176,7 @@ namespace Donkey_Kong
                     x.SendToBack();
                 }
 
-                // Here we use the tag of the platforms to identify them as solid objects
+                // Hier gebruiken we de tag van de sidewall om ze te identificeren als vaste objecten
                 // Credit: gemaakt door chatgtp maar zelf moet aanpassen en uitzoeken hoe het werkt
                 if ((string)x.Tag == "sidewall" && x is PictureBox)
                 {
@@ -186,7 +184,7 @@ namespace Donkey_Kong
                     IfSidewallCollisionStopPlayer((PictureBox)x);
                 }
 
-                // 
+                // Hier gebruiken we de tag van End om ze te identificeren als vaste objecten
                 if ((string)x.Tag == "End" && x is PictureBox)
                 {
                     IfPlayerTouchEndStopGameAndRestard((PictureBox)x);
@@ -196,7 +194,7 @@ namespace Donkey_Kong
         #endregion
 
         #region Collisions
-        // code voor end of the game
+        // code voor het einde van de game
         private void IfPlayerTouchEndStopGameAndRestard(PictureBox FinalDestination)
         {
             if (pbxPlayer.Bounds.IntersectsWith(FinalDestination.Bounds))
@@ -204,6 +202,7 @@ namespace Donkey_Kong
                 RestartGame();
 
                 score = score + 50;
+                timesWon = timesWon + 1;
             }
         }
 
@@ -213,7 +212,7 @@ namespace Donkey_Kong
         {
             if (pbxPlayer.Bounds.IntersectsWith(barrel.Bounds))
             {
-                // Handle the collision (player hit the barrel)
+                // Behandel de botsing (speler raakt de barrel)
                 GameTimer.Stop();
                 BarrelTimer.Stop();
                 isGameOver = true;
@@ -221,12 +220,15 @@ namespace Donkey_Kong
             }
         }
 
+        // Verwijdert de barrels die pbxBarrelRemoval aanraken 
         private void RemoveBarrelAtEndOfBarrelTrack(PictureBox barrel)
         {
             if (pbxBarrelRemoval.Bounds.IntersectsWith(barrel.Bounds))
             {
                 this.Controls.Remove(barrel);
-                barrel.Dispose(); // Optional: Dispose the barrel to release resources
+
+                //halt de barrel complete weg zodat er geen overload kan zijn (is optioneel omdat een barrel niet veel vraagt)
+                barrel.Dispose();
             }
         }
 
@@ -319,13 +321,6 @@ namespace Donkey_Kong
                 jumping = true;
             }
 
-            // Als P wordt ingedrukt dan stoppen de timers (game pauze)
-            if (e.KeyCode == Keys.P)
-            {
-                GameTimer.Stop();
-                BarrelTimer.Stop();
-            }
-
             // Toggle pause state when "P" key is pressed
             if (e.KeyCode == Keys.P)
             {
@@ -368,12 +363,6 @@ namespace Donkey_Kong
             if (jumping == true)
             {
                 jumping = false;
-            }
-
-            // Dit is de code voor eindigen van het gebruiken van de ladder als dat al gebeurt is 
-            if (usingLadder == true)
-            {
-                //usingLadder = false;
             }
 
             // Als er op enter wordt ge drukt herstart de game
