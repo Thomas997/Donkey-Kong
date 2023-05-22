@@ -325,16 +325,26 @@ namespace Donkey_Kong
                 GameTimer.Stop();
                 BarrelTimer.Stop();
             }
-            // Als P knop niet ingedrukt is dan gaan de timers verder
+
+            // Toggle pause state when "P" key is pressed
             if (e.KeyCode == Keys.P)
             {
-                GameTimer.Start();
-                BarrelTimer.Start();
+                isPaused = !isPaused;
+
+                // Pause or resume the timers based on the pause state
+                if (isPaused)
+                {
+                    GameTimer.Stop();
+                    BarrelTimer.Stop();
+                }
+                else
+                {
+                    GameTimer.Start();
+                    BarrelTimer.Start();
+                }
             }
-
-
-            // Dit is de code voor als je de key up in klikt en als de speler op de ladder is zodat je de variabelen usingladder op true zet zodat het werkt
-            usingLadder = (e.KeyCode == Keys.Up && IsPlayerOnLadder());
+                // Dit is de code voor als je de key up in klikt en als de speler op de ladder is zodat je de variabelen usingladder op true zet zodat het werkt
+                usingLadder = (e.KeyCode == Keys.Up && IsPlayerOnLadder());
         }
 
 
@@ -371,9 +381,6 @@ namespace Donkey_Kong
             {
                 RestartGame();
             }
-
-            
-
         }
         #endregion
 
