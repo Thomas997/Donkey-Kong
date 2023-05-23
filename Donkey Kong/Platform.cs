@@ -20,10 +20,6 @@ namespace Donkey_Kong
         bool goLeft, goRight, jumping, isGameOver, usingLadder, isPaused = false;
         int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 8, timesWon = 0;
 
-        bool isPaused = false;
-
-        int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 8;
-
         private string playerName; // Declareer name als een veld in deze class
 
         public Platform(AudioPlayer MainTheme, string name)
@@ -77,8 +73,6 @@ namespace Donkey_Kong
         #region Main game timer
         // Dit is de timer hier gebeurd alles met beweging
         // Credit: https://youtu.be/rQBHwdEEL9I
-
-
         private void MainGameTimerEvent(object sender, EventArgs e)
         {
             txtScore.Text = "" + score;
@@ -387,7 +381,7 @@ namespace Donkey_Kong
         }
         #endregion
 
-        #region restart events
+        #region Restart events
         // Deze functie herstart het spel en reset de variabelen
         // Credit: https://youtu.be/rQBHwdEEL9I
         private void RestartGame()
@@ -426,7 +420,9 @@ namespace Donkey_Kong
             BarrelTimer.Start();
             GameTimer.Start();
         }
+        #endregion
 
+        #region Database
         //Sla de high score op
         //Full credit: ChatGPT
         public static void SaveHighScore(string name, int score)
