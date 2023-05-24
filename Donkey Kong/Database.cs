@@ -37,7 +37,25 @@ namespace Donkey_Kong
         {
             this.connectionString = connectionString;
         }
+        public int GetPlayerHighScore(string playerName)
+        {
+            int highScore = 0;
 
+            using (OleDbConnection con = new OleDbConnection(connectionString))
+            {
+                con.Open();
+                var command = new OleDbCommand($"SELECT MAX(Score) FROM HighScores WHERE PlayerName = ?", con);
+                command.Parameters.AddWithValue("PlayerName", playerName);
+                var result = command.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    highScore = Convert.ToInt32(result);
+                }
+            }
+
+            return highScore;
+        }
         public List<HighScore> GetTopHighScores(int limit)
         {
             var highScores = new List<HighScore>();

@@ -30,6 +30,11 @@ namespace Donkey_Kong
             AudioPlayer GameMusic = new AudioPlayer(Donkey_Kong.Properties.Resources.Game);
             GameMusic.Play();
             MainTheme.Dispose();
+            // Retrieve the current player's high score from the database
+            string connectionString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source='{Application.StartupPath}\\Database.accdb';Persist Security Info=False;";
+            DatabaseHelper dbHelper = new DatabaseHelper(connectionString);
+            int highScore = dbHelper.GetPlayerHighScore(playerName);
+            txtHighscore.Text = highScore.ToString();
         }
 
         private void Form1_Load(object sender, EventArgs e)
