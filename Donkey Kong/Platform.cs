@@ -222,6 +222,8 @@ namespace Donkey_Kong
         // code voor end of the game
         private void IfPlayerTouchEndStopGameAndRestart(PictureBox FinalDestination, string playerName)
         {
+            AudioPlayer Win = new AudioPlayer(Donkey_Kong.Properties.Resources.blipSelect);
+            Win.PlayOnce();
             if (pbxPlayer.Bounds.IntersectsWith(FinalDestination.Bounds))
             {
                 string date = DateTime.Now.ToString("yyyy-MM-dd");
@@ -245,7 +247,7 @@ namespace Donkey_Kong
             {
                 //life system emle leer als je een barrel raakt 1 leven er af
                 Life = Life - 1;
-                AudioPlayer death = new AudioPlayer(Donkey_Kong.Properties.Resources.blipSelect);
+                AudioPlayer death = new AudioPlayer(Donkey_Kong.Properties.Resources.death);
                 death.PlayOnce();
                 //life == 1 stop game
                 if (Life == 1)
@@ -255,7 +257,7 @@ namespace Donkey_Kong
                     BarrelTimer.Stop();
                     isGameOver = true;
                     AudioPlayer GameOver = new AudioPlayer(Donkey_Kong.Properties.Resources.game_over);
-                    GameOver.Play();
+                    GameOver.PlayOnce();
                 }
 
                 //life - 1 de pbx van leven weg
