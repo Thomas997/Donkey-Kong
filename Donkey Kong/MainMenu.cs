@@ -24,9 +24,8 @@ namespace Donkey_Kong
         //variabele aanmaken
         private List<Label> menuItems;
         private int selectedMenuItemIndex;
-        private PictureBox marioPictureBox;
+        private PictureBox pbxMarioPointer;
         string path = Application.StartupPath;
-        bool isThemePlaying = false;
         //AudioPlayers (van een class) aanmaken
         //chatGPT
         AudioPlayer button = new AudioPlayer(Donkey_Kong.Properties.Resources.button);
@@ -55,17 +54,17 @@ namespace Donkey_Kong
             selectedMenuItemIndex = 0;
             menuItems[selectedMenuItemIndex].ForeColor = Color.Red;
 
-            // Create and position the Mario picture box
-            marioPictureBox = new PictureBox();
-            marioPictureBox.Image = Properties.Resources.MarioPointer;
-            marioPictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            // Mario pointer's picturebox maken
+            pbxMarioPointer = new PictureBox();
+            pbxMarioPointer.Image = Properties.Resources.MarioPointer;
+            pbxMarioPointer.SizeMode = PictureBoxSizeMode.AutoSize;
             int itemTop = menuItems[selectedMenuItemIndex].Top;
             int itemLeft = menuItems[selectedMenuItemIndex].Left;
-            marioPictureBox.Location = new Point(itemLeft - marioPictureBox.Width - 5, itemTop - 15);
+            pbxMarioPointer.Location = new Point(itemLeft - pbxMarioPointer.Width - 5, itemTop - 15);
 
             
             // Mario pointer toevoegen
-            panel1.Controls.Add(marioPictureBox);
+            panel1.Controls.Add(pbxMarioPointer);
 
             // Key down -> eventhandler
             this.KeyDown += MainMenu_KeyDown;
@@ -76,7 +75,7 @@ namespace Donkey_Kong
         // ChatGPT
         private void MainMenu_KeyDown(object sender, KeyEventArgs e)
         {
-            select.Play();
+            select.PlayOnce();
             switch (e.KeyCode)
             {
                 case Keys.Up:
@@ -106,7 +105,7 @@ namespace Donkey_Kong
                         case 0:
                             // Start spel
                             MainTheme.Stop();
-                            button.Play();
+                            button.PlayOnce();
                             Task.Delay(5000);
                             // Vraag de gebruiker voor een username
                             //Credit: ChatGPT
@@ -151,13 +150,13 @@ namespace Donkey_Kong
                             break;
                         case 1:
                             // Leaderboard laten zien
-                            button.Play();
+                            button.PlayOnce();
                             Task.Delay(5000);
                             ShowLeaderboard();
                             break;
                         case 2:
                             // Control animatie
-                            button.Play();
+                            button.PlayOnce();
                             Task.Delay(5000);
                             ShowControls();
                             break;
@@ -168,7 +167,7 @@ namespace Donkey_Kong
             // Mario repositioning
             int itemTop = menuItems[selectedMenuItemIndex].Top;
             int itemLeft = menuItems[selectedMenuItemIndex].Left;
-            marioPictureBox.Location = new Point(itemLeft - marioPictureBox.Width - 5, itemTop - 15);
+            pbxMarioPointer.Location = new Point(itemLeft - pbxMarioPointer.Width - 5, itemTop - 15);
         }
 
         private void StartGame(string name)

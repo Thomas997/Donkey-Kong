@@ -279,6 +279,16 @@ namespace Donkey_Kong.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PlayerLeft {
+            get {
+                object obj = ResourceManager.GetObject("PlayerLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Princess {
             get {
                 object obj = ResourceManager.GetObject("Princess", resourceCulture);

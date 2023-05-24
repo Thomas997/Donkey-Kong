@@ -19,7 +19,7 @@ namespace Donkey_Kong
     {
         // Variabelen
         bool goLeft, goRight, jumping, isGameOver, usingLadder, isPaused = false;
-        int jumpSpeed, speedLadderUp, force, playerSpeed = 7, barrelSpeed = 0;
+        int jumpSpeed, speedLadderUp, force, playerSpeed = 7, barrelSpeed = 8;
 
         private string playerName; // Declareer name als een veld in deze class
 
@@ -128,14 +128,14 @@ namespace Donkey_Kong
             if (goLeft == true)
             {
                 pbxPlayer.Left -= playerSpeed;
-                //pbxPlayer.BackgroundImage = Properties.Resources.Barrel; nog aanpassen naar juiste image van mario
+                pbxPlayer.BackgroundImage = Properties.Resources.PlayerLeft;
             }
 
             // is voor naar rechts te gaan
             if (goRight == true)
             {
                 pbxPlayer.Left += playerSpeed;
-                //pbxPlayer.BackgroundImage = Properties.Resources.Barrel; nog aanpassen naar juiste image van mario
+                pbxPlayer.BackgroundImage = Properties.Resources.Player;
             }
 
             // als usingladder false is dan kan je springen anders is usingladder true en ben je een ladder aan het gebruiken
@@ -247,7 +247,8 @@ namespace Donkey_Kong
                 GameTimer.Stop();
                 BarrelTimer.Stop();
                 isGameOver = true;
-                //txtScore.Text = score.ToString();
+                score = 0;
+                txtScore.Text = score.ToString();
             }
         }
 
@@ -414,6 +415,7 @@ namespace Donkey_Kong
             goLeft = false;
             goRight = false;
             isGameOver = false;
+
 
             foreach (Control x in this.Controls)
             {
