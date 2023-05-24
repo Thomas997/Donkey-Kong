@@ -45,15 +45,16 @@ namespace Donkey_Kong
             using (OleDbConnection con = new OleDbConnection(connectionString))
             {
                 con.Open();
-                var command = new OleDbCommand($"SELECT TOP {limit} PlayerName, Score FROM HighScores ORDER BY Score DESC", con);
+                var command = new OleDbCommand($"SELECT TOP {limit} PlayerName, Score, [Date] FROM HighScores ORDER BY Score DESC", con);
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    var playerName = reader.GetString(0);
-                    var score = reader.GetInt32(1);
-                    var formattedDate = reader.GetString(2);
-                    var highScore = new HighScore(playerName, score, formattedDate);
+                    string playerName = reader.GetString(0);
+                    int score = reader.GetInt32(1);
+                    DateTime formattedDate = reader.GetDateTime(2);
+                    string formattedDateString = formattedDate.ToString("dd-MM-yyyy");
+                    HighScore highScore = new HighScore(playerName, score, formattedDateString);
                     highScores.Add(highScore);
                 }
             }
