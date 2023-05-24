@@ -182,9 +182,9 @@
             this.pbxEnd.BackColor = System.Drawing.SystemColors.Desktop;
             this.pbxEnd.BackgroundImage = global::Donkey_Kong.Properties.Resources.Princess;
             this.pbxEnd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbxEnd.Location = new System.Drawing.Point(539, 32);
+            this.pbxEnd.Location = new System.Drawing.Point(539, 52);
             this.pbxEnd.Name = "pbxEnd";
-            this.pbxEnd.Size = new System.Drawing.Size(45, 63);
+            this.pbxEnd.Size = new System.Drawing.Size(39, 43);
             this.pbxEnd.TabIndex = 8;
             this.pbxEnd.TabStop = false;
             this.pbxEnd.Tag = "End";

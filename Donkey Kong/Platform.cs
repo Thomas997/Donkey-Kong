@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Donkey_Kong;
+using System.Runtime.Versioning;
 
 namespace Donkey_Kong
 {
@@ -18,7 +19,7 @@ namespace Donkey_Kong
     {
         // Variabelen
         bool goLeft, goRight, jumping, isGameOver, usingLadder, isPaused = false;
-        int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 8, timesWon = 0;
+        int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 8;
 
         private string playerName; // Declareer name als een veld in deze class
 
@@ -66,6 +67,9 @@ namespace Donkey_Kong
             barrel.TabIndex = 9;
             barrel.TabStop = false;
             barrel.Tag = "right";
+            barrel.BackgroundImage = Properties.Resources.Barrel;
+            barrel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            barrel.BackColor = Color.Black;
             this.Controls.Add(barrel);
         }
         #endregion
@@ -119,12 +123,14 @@ namespace Donkey_Kong
             if (goLeft == true)
             {
                 pbxPlayer.Left -= playerSpeed;
+                //pbxPlayer.BackgroundImage = Properties.Resources.Barrel; nog aanpassen naar juiste image van mario
             }
 
             // is voor naar rechts te gaan
             if (goRight == true)
             {
                 pbxPlayer.Left += playerSpeed;
+                //pbxPlayer.BackgroundImage = Properties.Resources.Barrel; nog aanpassen naar juiste image van mario
             }
 
             // als usingladder false is dan kan je springen anders is usingladder true en ben je een ladder aan het gebruiken
@@ -210,12 +216,11 @@ namespace Donkey_Kong
 
                 DatabaseHelper.AddOrUpdateHighScore(playerName, score, date);
                 score = score + 50;
-                timesWon = timesWon + 1;
             }
         }
 
         // Stopt de timers en herstart het spel
-        // Credit: chatgtp + mezelf
+        // Credit: chatgtp + Thomas
         private void IfPlayerTouchBarrelStopGame(PictureBox barrel)
         {
             if (pbxPlayer.Bounds.IntersectsWith(barrel.Bounds))
@@ -266,13 +271,13 @@ namespace Donkey_Kong
         {
             if (pbxPlayer.Bounds.IntersectsWith(sidewall.Bounds))
             {
-                // If the player is moving to the right, move them back to the left of the wall
+                // Als de speler naar rechts beweegt, beweeg hem dan terug naar links van de muur als hij deze muur raakt
                 if (goRight)
                 {
                     pbxPlayer.Left = sidewall.Left - pbxPlayer.Width;
                 }
 
-                // If the player is moving to the left, move them back to the right of the wall
+                // Als de speler naar links beweegt, beweeg hem dan terug naar rechts van de muur als hij deze muur raakt
                 if (goLeft)
                 {
                     pbxPlayer.Left = sidewall.Right;
