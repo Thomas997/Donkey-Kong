@@ -62,6 +62,9 @@
             this.pbxBarrelRemoval = new System.Windows.Forms.PictureBox();
             this.pbxDonkeyKong = new System.Windows.Forms.PictureBox();
             this.pbxBarrels = new System.Windows.Forms.PictureBox();
+            this.pbxLife1 = new System.Windows.Forms.PictureBox();
+            this.pbxLife2 = new System.Windows.Forms.PictureBox();
+            this.pbxLife3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPlatform1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPlatform2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPlatform3)).BeginInit();
@@ -88,6 +91,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxBarrelRemoval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDonkeyKong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxBarrels)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLife1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLife2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLife3)).BeginInit();
             this.SuspendLayout();
             // 
             // txtScore
@@ -197,18 +203,18 @@
             // 
             // pbxRightSidewall
             // 
-            this.pbxRightSidewall.Location = new System.Drawing.Point(855, 156);
+            this.pbxRightSidewall.Location = new System.Drawing.Point(855, 134);
             this.pbxRightSidewall.Name = "pbxRightSidewall";
-            this.pbxRightSidewall.Size = new System.Drawing.Size(217, 784);
+            this.pbxRightSidewall.Size = new System.Drawing.Size(217, 806);
             this.pbxRightSidewall.TabIndex = 10;
             this.pbxRightSidewall.TabStop = false;
             this.pbxRightSidewall.Tag = "sidewall";
             // 
             // pbxLeftSidewall
             // 
-            this.pbxLeftSidewall.Location = new System.Drawing.Point(-5, 156);
+            this.pbxLeftSidewall.Location = new System.Drawing.Point(-5, 134);
             this.pbxLeftSidewall.Name = "pbxLeftSidewall";
-            this.pbxLeftSidewall.Size = new System.Drawing.Size(207, 784);
+            this.pbxLeftSidewall.Size = new System.Drawing.Size(207, 806);
             this.pbxLeftSidewall.TabIndex = 11;
             this.pbxLeftSidewall.TabStop = false;
             this.pbxLeftSidewall.Tag = "sidewall";
@@ -422,12 +428,45 @@
             this.pbxBarrels.TabIndex = 32;
             this.pbxBarrels.TabStop = false;
             // 
+            // pbxLife1
+            // 
+            this.pbxLife1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxLife1.BackgroundImage")));
+            this.pbxLife1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbxLife1.Location = new System.Drawing.Point(60, 98);
+            this.pbxLife1.Name = "pbxLife1";
+            this.pbxLife1.Size = new System.Drawing.Size(48, 30);
+            this.pbxLife1.TabIndex = 33;
+            this.pbxLife1.TabStop = false;
+            // 
+            // pbxLife2
+            // 
+            this.pbxLife2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxLife2.BackgroundImage")));
+            this.pbxLife2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbxLife2.Location = new System.Drawing.Point(98, 98);
+            this.pbxLife2.Name = "pbxLife2";
+            this.pbxLife2.Size = new System.Drawing.Size(48, 30);
+            this.pbxLife2.TabIndex = 34;
+            this.pbxLife2.TabStop = false;
+            // 
+            // pbxLife3
+            // 
+            this.pbxLife3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxLife3.BackgroundImage")));
+            this.pbxLife3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbxLife3.Location = new System.Drawing.Point(137, 98);
+            this.pbxLife3.Name = "pbxLife3";
+            this.pbxLife3.Size = new System.Drawing.Size(48, 30);
+            this.pbxLife3.TabIndex = 35;
+            this.pbxLife3.TabStop = false;
+            // 
             // Platform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Desktop;
             this.ClientSize = new System.Drawing.Size(1064, 941);
+            this.Controls.Add(this.pbxLife3);
+            this.Controls.Add(this.pbxLife2);
+            this.Controls.Add(this.pbxLife1);
             this.Controls.Add(this.pbxBarrels);
             this.Controls.Add(this.pbxDonkeyKong);
             this.Controls.Add(this.pbxBarrelRemoval);
@@ -493,6 +532,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxBarrelRemoval)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDonkeyKong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxBarrels)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLife1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLife2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLife3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -531,6 +573,9 @@
         private System.Windows.Forms.PictureBox pbxBarrelRemoval;
         private System.Windows.Forms.PictureBox pbxDonkeyKong;
         private System.Windows.Forms.PictureBox pbxBarrels;
+        private System.Windows.Forms.PictureBox pbxLife1;
+        private System.Windows.Forms.PictureBox pbxLife2;
+        private System.Windows.Forms.PictureBox pbxLife3;
     }
 }
 

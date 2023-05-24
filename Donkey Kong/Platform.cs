@@ -19,7 +19,7 @@ namespace Donkey_Kong
     {
         // Variabelen
         bool goLeft, goRight, jumping, isGameOver, usingLadder, isPaused = false;
-        int jumpSpeed, speedLadderUp, force, playerSpeed = 7, barrelSpeed = 0;
+        int jumpSpeed, speedLadderUp, force, playerSpeed = 6, barrelSpeed = 10;
 
         private string playerName; // Declareer name als een veld in deze class
 
@@ -206,7 +206,6 @@ namespace Donkey_Kong
                 }
             }
         }
-        #endregion
 
         // Define a class-level variable for the score
         private int score = 0;
@@ -217,6 +216,7 @@ namespace Donkey_Kong
             score += 50;
             txtScore.Text = score.ToString();
         }
+        #endregion
 
         #region Collisions
         // code voor end of the game
