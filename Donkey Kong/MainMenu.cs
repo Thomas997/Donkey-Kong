@@ -224,6 +224,8 @@ namespace Donkey_Kong
                     ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
                 };
                 // Set the background color and text color for columns
+                dataGridView.DefaultCellStyle.BackColor = Color.Black;
+                dataGridView.DefaultCellStyle.ForeColor = Color.White;
                 foreach (DataGridViewColumn column in dataGridView.Columns)
                 {
                     column.DefaultCellStyle.BackColor = Color.Black;
