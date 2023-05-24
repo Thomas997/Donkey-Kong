@@ -222,8 +222,6 @@ namespace Donkey_Kong
         // code voor end of the game
         private void IfPlayerTouchEndStopGameAndRestart(PictureBox FinalDestination, string playerName)
         {
-            AudioPlayer Win = new AudioPlayer(Donkey_Kong.Properties.Resources.blipSelect);
-            Win.PlayOnce();
             if (pbxPlayer.Bounds.IntersectsWith(FinalDestination.Bounds))
             {
                 string date = DateTime.Now.ToString("yyyy-MM-dd");
