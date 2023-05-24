@@ -19,7 +19,7 @@ namespace Donkey_Kong
     {
         // Variabelen
         bool goLeft, goRight, jumping, isGameOver, usingLadder, isPaused = false;
-        int jumpSpeed, speedLadderUp, force, playerSpeed = 7, barrelSpeed = 8;
+        int jumpSpeed, speedLadderUp, force, playerSpeed = 6, barrelSpeed = 10, Life = 4;
 
         private string playerName; // Declareer name als een veld in deze class
 
@@ -206,7 +206,6 @@ namespace Donkey_Kong
                 }
             }
         }
-        #endregion
 
         // Define a class-level variable for the score
         private int score = 0;
@@ -217,6 +216,7 @@ namespace Donkey_Kong
             score += 50;
             txtScore.Text = score.ToString();
         }
+        #endregion
 
         #region Collisions
         // code voor end of the game
@@ -243,12 +243,38 @@ namespace Donkey_Kong
         {
             if (pbxPlayer.Bounds.IntersectsWith(barrel.Bounds))
             {
-                // Behandel de botsing (speler raakt de barrel)
-                GameTimer.Stop();
-                BarrelTimer.Stop();
-                isGameOver = true;
-                score = 0;
-                txtScore.Text = score.ToString();
+                //life system emle leer als je een barrel raakt 1 leven er af
+                Life = Life - 1;
+
+                //life == 1 stop game
+                if (Life == 1)
+                {
+                    // Behandel de botsing (speler raakt de barrel)
+                    GameTimer.Stop();
+                    BarrelTimer.Stop();
+                    isGameOver = true;
+                }
+
+                //life - 1 de pbx van leven weg
+                if (Life == 3)
+                {
+                    pbxLife3.Visible = false;
+                }
+
+                //life - 1 de pbx van leven weg
+                if (Life == 2)
+                {
+                    pbxLife2.Visible = false;
+                }
+
+                //life - 1 de pbx van leven weg
+                if (Life == 1)
+                {
+                    pbxLife1.Visible = false;
+                }
+
+                //de barrel removen die je aanraakt
+                this.Controls.Remove(barrel);
             }
         }
 
@@ -401,6 +427,7 @@ namespace Donkey_Kong
             if (e.KeyCode == Keys.Enter && isGameOver == true)
             {
                 RestartGame();
+                Life = Life + 3;
             }
         }
         #endregion
