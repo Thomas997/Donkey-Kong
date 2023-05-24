@@ -20,10 +20,6 @@ namespace Donkey_Kong
         bool goLeft, goRight, jumping, isGameOver, usingLadder, isPaused = false;
         int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 8, timesWon = 0;
 
-        bool isPaused = false;
-
-        int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 8;
-
         private string playerName; // Declareer name als een veld in deze class
 
         public Platform(AudioPlayer MainTheme, string name)

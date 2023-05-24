@@ -187,7 +187,70 @@ namespace Donkey_Kong
         private void ShowLeaderboard()
         {
             menuItems[selectedMenuItemIndex].ForeColor = Color.Yellow;
-            // TODO: Implementeer leaderboard logica
+
+            string connectionString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source='{Application.StartupPath}\\Database.accdb';Persist Security Info=False;";
+            var dbHelper = new DatabaseHelper(connectionString);
+            var leaderboardData = dbHelper.GetTopHighScores(10); // Change the limit as per your requirement
+
+            using (var form = new Form())
+            {
+                form.BackColor = Color.Black;
+                form.ForeColor = Color.White;
+                form.Font = new Font("Kongtext", 12, FontStyle.Regular);
+                form.Width = 700;
+                form.Height = 800;
+                form.Text = "Leaderboard";
+                form.FormBorderStyle = FormBorderStyle.FixedDialog;
+                form.MaximizeBox = false;
+                form.MinimizeBox = false;
+                form.StartPosition = FormStartPosition.CenterScreen;
+
+                var highScores = dbHelper.GetTopHighScores(10);
+
+                var dataGridView = new DataGridView()
+                {
+                    Left = 15,
+                    Top = 15,
+                    Width = 550,
+                    Height = 400,
+                    BackgroundColor = Color.Black,
+                    ForeColor = Color.White,
+                    Font = new Font("Kongtext", 12, FontStyle.Regular),
+                    AllowUserToAddRows = false,
+                    AllowUserToDeleteRows = false,
+                    AllowUserToResizeRows = false,
+                    RowHeadersVisible = false,
+                    ColumnHeadersVisible = true,
+                    ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+                };
+                // Set the background color and text color for columns
+                foreach (DataGridViewColumn column in dataGridView.Columns)
+                {
+                    column.DefaultCellStyle.BackColor = Color.Black;
+                    column.DefaultCellStyle.ForeColor = Color.White;
+                }
+                // Define the columns for the DataGridView
+                dataGridView.Columns.Add("PlayerName", "Player Name");
+                dataGridView.Columns.Add("Score", "Score");
+                dataGridView.Columns.Add("Date", "Date");
+
+                // Sort the high scores based on the score
+                var sortedHighScores = highScores.OrderByDescending(score => score.Score).ToList();
+
+                // Populate the DataGridView with the sorted high scores
+                foreach (var score in sortedHighScores)
+                {
+                    dataGridView.Rows.Add(score.PlayerName, score.Score, score.Date.ToString("dd-MM-yyyy"));
+                }
+
+                // Assuming you have three columns: PlayerName, Score, and Date
+                dataGridView.Columns[0].Width = 250;  // Set the width of the second column
+                dataGridView.Columns[1].Width = 100;  // Set the width of the third column
+                dataGridView.Columns[2].Width = 220;  // Set the width of the third column
+
+                form.Controls.Add(dataGridView);
+                form.ShowDialog();
+            }
         }
 
         private void ShowControls()
