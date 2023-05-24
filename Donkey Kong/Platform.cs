@@ -20,7 +20,6 @@ namespace Donkey_Kong
         // Variabelen
         bool goLeft, goRight, jumping, isGameOver, usingLadder, isPaused = false;
         int jumpSpeed, speedLadderUp, force, playerSpeed = 6, barrelSpeed = 10, Life = 4;
-
         private string playerName; // Declareer name als een veld in deze class
 
         public Platform(AudioPlayer MainTheme, string name)
@@ -78,7 +77,7 @@ namespace Donkey_Kong
             this.Controls.Add(barrel);
         }
         #endregion
-
+        
         #region Main game timer
         // Dit is de timer hier gebeurd alles met beweging
         // Credit: https://youtu.be/rQBHwdEEL9I
@@ -137,6 +136,7 @@ namespace Donkey_Kong
                 pbxPlayer.Left += playerSpeed;
                 pbxPlayer.BackgroundImage = Properties.Resources.Player;
             }
+
 
             // als usingladder false is dan kan je springen anders is usingladder true en ben je een ladder aan het gebruiken
             if (!usingLadder)
@@ -222,6 +222,8 @@ namespace Donkey_Kong
         // code voor end of the game
         private void IfPlayerTouchEndStopGameAndRestart(PictureBox FinalDestination, string playerName)
         {
+            AudioPlayer Win = new AudioPlayer(Donkey_Kong.Properties.Resources.blipSelect);
+            Win.PlayOnce();
             if (pbxPlayer.Bounds.IntersectsWith(FinalDestination.Bounds))
             {
                 string date = DateTime.Now.ToString("yyyy-MM-dd");
@@ -245,7 +247,8 @@ namespace Donkey_Kong
             {
                 //life system emle leer als je een barrel raakt 1 leven er af
                 Life = Life - 1;
-
+                AudioPlayer death = new AudioPlayer(Donkey_Kong.Properties.Resources.death);
+                death.PlayOnce();
                 //life == 1 stop game
                 if (Life == 1)
                 {
@@ -253,6 +256,8 @@ namespace Donkey_Kong
                     GameTimer.Stop();
                     BarrelTimer.Stop();
                     isGameOver = true;
+                    AudioPlayer GameOver = new AudioPlayer(Donkey_Kong.Properties.Resources.game_over);
+                    GameOver.PlayOnce();
                 }
 
                 //life - 1 de pbx van leven weg
@@ -275,6 +280,7 @@ namespace Donkey_Kong
 
                 //de barrel removen die je aanraakt
                 this.Controls.Remove(barrel);
+                
             }
         }
 

@@ -174,7 +174,7 @@
             // 
             // pbxPlayer
             // 
-            this.pbxPlayer.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxPlayer.BackColor = System.Drawing.Color.Transparent;
             this.pbxPlayer.BackgroundImage = global::Donkey_Kong.Properties.Resources.Player;
             this.pbxPlayer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbxPlayer.Location = new System.Drawing.Point(256, 875);
@@ -221,7 +221,7 @@
             // 
             // pbxLadder1
             // 
-            this.pbxLadder1.BackColor = System.Drawing.SystemColors.Desktop;
+            this.pbxLadder1.BackColor = System.Drawing.Color.Transparent;
             this.pbxLadder1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxLadder1.BackgroundImage")));
             this.pbxLadder1.Location = new System.Drawing.Point(677, 768);
             this.pbxLadder1.Name = "pbxLadder1";
