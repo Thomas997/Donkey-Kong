@@ -19,7 +19,7 @@ namespace Donkey_Kong
     {
         // Variabelen
         bool goLeft, goRight, jumping, isGameOver, usingLadder, isPaused = false;
-        int jumpSpeed, speedLadderUp, force, score = 0, playerSpeed = 7, barrelSpeed = 8;
+        int jumpSpeed, speedLadderUp, force, playerSpeed = 7, barrelSpeed = 0;
 
         private string playerName; // Declareer name als een veld in deze class
 
@@ -79,7 +79,7 @@ namespace Donkey_Kong
         // Credit: https://youtu.be/rQBHwdEEL9I
         private void MainGameTimerEvent(object sender, EventArgs e)
         {
-            txtScore.Text = "" + score;
+            
             //txtHighscore.Text = "" + score; //moet nog naar highsscore veranderd worden
 
             // deze foreach zorgt er voor dat we meerdere barrels gaan kunnen gebruiken
@@ -197,25 +197,38 @@ namespace Donkey_Kong
                 // Hier gebruiken we de tag van End om ze te identificeren als vaste objecten
                 if ((string)x.Tag == "End" && x is PictureBox)
                 {
-                    IfPlayerTouchEndStopGameAndRestard((PictureBox)x, playerName);
+                    IfPlayerTouchEndStopGameAndRestart((PictureBox)x, playerName);
                 }
             }
         }
         #endregion
 
+        // Define a class-level variable for the score
+        private int score = 0;
+
+        // Method to update the score
+        private void UpdateScore(ref int score)
+        {
+            score += 50;
+            txtScore.Text = score.ToString();
+        }
+
         #region Collisions
         // code voor end of the game
-        private void IfPlayerTouchEndStopGameAndRestard(PictureBox FinalDestination, string playerName)
+        private void IfPlayerTouchEndStopGameAndRestart(PictureBox FinalDestination, string playerName)
         {
             if (pbxPlayer.Bounds.IntersectsWith(FinalDestination.Bounds))
             {
-                RestartGame();
-                score = score + 50;
-
                 string date = DateTime.Now.ToString("yyyy-MM-dd");
 
+                // Pass the score by reference to the UpdateScore method
+                UpdateScore(ref score);
+
+                // Update the score in the database
                 DatabaseHelper.AddOrUpdateHighScore(playerName, score, date);
-                score = score + 50;
+
+                // Restart the game
+                RestartGame();
             }
         }
 
@@ -229,7 +242,7 @@ namespace Donkey_Kong
                 GameTimer.Stop();
                 BarrelTimer.Stop();
                 isGameOver = true;
-                txtScore.Text = score.ToString();
+                //txtScore.Text = score.ToString();
             }
         }
 
@@ -396,10 +409,6 @@ namespace Donkey_Kong
             goLeft = false;
             goRight = false;
             isGameOver = false;
-            score = 0;
-
-            txtScore.Text = "" + score;
-            txtHighscore.Text = "" + score; //moet nog aangepast worden naar highscore variabelen
 
             foreach (Control x in this.Controls)
             {
